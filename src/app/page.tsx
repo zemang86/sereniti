@@ -1,6 +1,8 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Brain, Heart, Building, Smartphone, ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -198,6 +200,74 @@ function TrustSection() {
   );
 }
 
+/* ─── Damaura Mockup Carousel ─── */
+const damauraMockups = [
+  { src: "/images/damaura-mock-01.png", alt: "Damaura app — 5 Pillars of Wellness dashboard" },
+  { src: "/images/damaura-mock-02.png", alt: "Damaura app — Your Wellness insights and mood tracker" },
+  { src: "/images/damaura-mock-03.png", alt: "Damaura app — Talk to Damaura AI and daily reflections" },
+];
+
+function DamauraMockupCarousel() {
+  const [current, setCurrent] = useState(0);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % damauraMockups.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(next, 4000);
+    return () => clearInterval(timer);
+  }, [next]);
+
+  return (
+    <div className="relative max-w-[380px] mx-auto">
+      {/* Glow behind */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-sunrise/25 rounded-full blur-[60px] pointer-events-none" />
+
+      {/* Images */}
+      <div className="relative overflow-hidden rounded-[28px] shadow-2xl">
+        {damauraMockups.map((mock, i) => (
+          <motion.div
+            key={mock.src}
+            className={i === 0 ? "relative" : "absolute inset-0"}
+            initial={false}
+            animate={{
+              opacity: i === current ? 1 : 0,
+              scale: i === current ? 1 : 1.05,
+            }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <Image
+              src={mock.src}
+              alt={mock.alt}
+              width={1024}
+              height={1024}
+              className="w-full h-auto block"
+              priority={i === 0}
+            />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center gap-2 mt-5">
+        {damauraMockups.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            aria-label={`Show mockup ${i + 1}`}
+            className={`h-2 rounded-full transition-all duration-500 ${
+              i === current
+                ? "w-6 bg-coral"
+                : "w-2 bg-night/15 hover:bg-night/30"
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 /* ─── Damaura Spotlight ─── */
 function DamauraSpolight() {
   return (
@@ -215,16 +285,9 @@ function DamauraSpolight() {
 
       <Container className="relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* App mockup placeholder */}
+          {/* App mockup carousel */}
           <FadeInOnScroll direction="left">
-            <GlowEffect size={400} intensity={0.25}>
-              <div className="aspect-[3/4] max-w-[320px] mx-auto rounded-[32px] bg-indigo bg-[url('/images/indigo-bg.png')] bg-cover bg-center shadow-2xl flex items-center justify-center">
-                <div className="text-center p-8">
-                  <Smartphone className="w-12 h-12 text-coral/60 mx-auto mb-3" strokeWidth={1} />
-                  <p className="text-dawn/30 text-xs">Damaura App Mockup</p>
-                </div>
-              </div>
-            </GlowEffect>
+            <DamauraMockupCarousel />
           </FadeInOnScroll>
 
           <div>

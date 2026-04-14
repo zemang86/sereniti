@@ -87,20 +87,20 @@ export function Footer() {
             <ul className="space-y-2.5">
               <li>
                 <a
-                  href="mailto:hello@serenitilabs.com"
+                  href="mailto:hello@sereniti.my"
                   className="flex items-center gap-2 text-sm text-dawn/60 hover:text-coral transition-colors"
                 >
                   <Mail className="w-4 h-4" />
-                  hello@serenitilabs.com
+                  hello@sereniti.my
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+60000000000"
+                  href="tel:+60183981795"
                   className="flex items-center gap-2 text-sm text-dawn/60 hover:text-coral transition-colors"
                 >
                   <Phone className="w-4 h-4" />
-                  +60 XX-XXX XXXX
+                  +60 18-398 1795
                 </a>
               </li>
             </ul>

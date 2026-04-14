@@ -20,9 +20,34 @@ const enquiryTypes = [
 function ContactForm() {
   const searchParams = useSearchParams();
   const preselected = searchParams.get("type") || "";
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
-  if (submitted) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch("https://formspree.io/f/xvzdgavb", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
     return (
       <div className="bg-white rounded-card shadow-card p-8 md:p-12 text-center">
         <h3 className="font-serif text-2xl text-night mb-4">Thank You</h3>
@@ -36,10 +61,7 @@ function ContactForm() {
 
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSubmitted(true);
-      }}
+      onSubmit={handleSubmit}
       className="bg-white rounded-card shadow-card p-8 md:p-12 space-y-6"
     >
       {/* Name */}
@@ -52,6 +74,7 @@ function ContactForm() {
         </label>
         <input
           id="name"
+          name="name"
           type="text"
           required
           className="w-full px-4 py-3 rounded-input bg-white border-0 shadow-card text-night placeholder:text-night/30 focus:ring-2 focus:ring-coral focus:outline-none"
@@ -69,6 +92,7 @@ function ContactForm() {
         </label>
         <input
           id="email"
+          name="email"
           type="email"
           required
           className="w-full px-4 py-3 rounded-input bg-white border-0 shadow-card text-night placeholder:text-night/30 focus:ring-2 focus:ring-coral focus:outline-none"
@@ -86,9 +110,10 @@ function ContactForm() {
         </label>
         <input
           id="phone"
+          name="phone"
           type="tel"
           className="w-full px-4 py-3 rounded-input bg-white border-0 shadow-card text-night placeholder:text-night/30 focus:ring-2 focus:ring-coral focus:outline-none"
-          placeholder="+60 XX-XXX XXXX"
+          placeholder="+60 18-398 1795"
         />
       </div>
 
@@ -102,6 +127,7 @@ function ContactForm() {
         </label>
         <select
           id="type"
+          name="enquiry_type"
           defaultValue={preselected}
           className="w-full px-4 py-3 rounded-input bg-white border-0 shadow-card text-night focus:ring-2 focus:ring-coral focus:outline-none appearance-none"
         >
@@ -123,6 +149,7 @@ function ContactForm() {
         </label>
         <textarea
           id="message"
+          name="message"
           required
           rows={5}
           className="w-full px-4 py-3 rounded-input bg-white border-0 shadow-card text-night placeholder:text-night/30 focus:ring-2 focus:ring-coral focus:outline-none resize-none"
@@ -130,11 +157,18 @@ function ContactForm() {
         />
       </div>
 
+      {status === "error" && (
+        <p className="text-red-500 text-sm text-center">
+          Something went wrong. Please try again or email us at hello@sereniti.my.
+        </p>
+      )}
+
       <button
         type="submit"
-        className="w-full bg-night text-white font-semibold py-3.5 rounded-button hover:bg-coral transition-colors duration-300"
+        disabled={status === "submitting"}
+        className="w-full bg-night text-white font-semibold py-3.5 rounded-button hover:bg-coral transition-colors duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Send Message
+        {status === "submitting" ? "Sending..." : "Send Message"}
       </button>
     </form>
   );
@@ -190,10 +224,10 @@ export default function ContactPage() {
                       <div>
                         <p className="text-sm font-semibold text-night">Email</p>
                         <a
-                          href="mailto:hello@serenitilabs.com"
+                          href="mailto:hello@sereniti.my"
                           className="text-sm text-coral hover:underline"
                         >
-                          hello@serenitilabs.com
+                          hello@sereniti.my
                         </a>
                       </div>
                     </div>
@@ -207,10 +241,10 @@ export default function ContactPage() {
                           Phone / WhatsApp
                         </p>
                         <a
-                          href="tel:+60000000000"
+                          href="tel:+60183981795"
                           className="text-sm text-coral hover:underline"
                         >
-                          +60 XX-XXX XXXX
+                          +60 18-398 1795
                         </a>
                       </div>
                     </div>
