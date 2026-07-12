@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Brand Colors */
+  --color-sunrise: #F5D3B8;
+  --color-dawn: #FFF6EF;
+  --color-coral: #E07A4B;
+  --color-night: #1C1C1E;
+  --color-indigo: #1E1A93;
+  --color-indigo-light: #2D28A6;
+  --color-indigo-soft: #E8E7F5;
+  --color-lavender: #C9B8DB;
+  --color-blush: #F0C4B8;
+  --color-cloud: #D8E8F0;
+  --color-mist: #F8DED4;
+
+  /* Fonts */
+  --font-serif: "DM Serif Display", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  /* Border Radius */
+  --radius-card: 20px;
+  --radius-button: 9999px;
+  --radius-input: 12px;
+
+  /* Shadows: layered and tinted to the warm brand hue, not flat black */
+  --shadow-card: 0 1px 2px rgba(48, 32, 22, 0.04), 0 6px 20px rgba(48, 32, 22, 0.06);
+  --shadow-card-hover: 0 2px 6px rgba(48, 32, 22, 0.06), 0 18px 44px rgba(64, 38, 24, 0.13);
+}
+
+/* Gradient Custom Properties */
+:root {
+  --gradient-sunrise: linear-gradient(to bottom, #FFF6EF, #F5D3B8, #E8C4A8);
+  --gradient-warm-card: linear-gradient(135deg, #F5D3B8, #E8B8A0);
+  --gradient-glow: radial-gradient(circle, #F5D3B8, #FFF6EF);
+  --gradient-calm-fade: linear-gradient(to right, #FFF6EF, #FFFFFF);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FFF6EF;
+  color: #1C1C1E;
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Serif headings: DM Serif Display tightens up nicely at display sizes,
+   and balanced wrapping avoids lonely last-line orphans. */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Body copy reads calmer with pretty wrapping (no orphan widows). */
+p {
+  text-wrap: pretty;
+}
+
+/* Selection color */
+::selection {
+  background-color: #F5D3B8;
+  color: #1C1C1E;
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid #E07A4B;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect users who prefer reduced motion: safety net across all
+   framer-motion reveals, parallax, and CSS transitions. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
