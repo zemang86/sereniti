@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
 import { BlogCard } from "@/components/cards/BlogCard";
+import { BlogArt } from "@/components/blog/BlogArt";
 import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
@@ -15,6 +16,48 @@ import { absoluteUrl } from "@/lib/site";
 import type { Metadata } from "next";
 
 type Params = Promise<{ slug: string }>;
+
+/** Render body paragraphs, with "## " as headings and "- " runs as bullet lists. */
+function renderBlocks(body: string[]) {
+  const out: React.ReactNode[] = [];
+  let list: string[] = [];
+  const flush = () => {
+    if (list.length) {
+      out.push(
+        <ul
+          key={`ul-${out.length}`}
+          className="list-disc space-y-2 pl-6 marker:text-coral"
+        >
+          {list.map((li, i) => (
+            <li key={i}>{li}</li>
+          ))}
+        </ul>
+      );
+      list = [];
+    }
+  };
+  body.forEach((b, i) => {
+    if (b.startsWith("- ")) {
+      list.push(b.slice(2));
+      return;
+    }
+    flush();
+    if (b.startsWith("## ")) {
+      out.push(
+        <h2
+          key={i}
+          className="pt-4 font-serif text-2xl md:text-3xl text-night"
+        >
+          {b.slice(3)}
+        </h2>
+      );
+    } else {
+      out.push(<p key={i}>{b}</p>);
+    }
+  });
+  flush();
+  return out;
+}
 
 export async function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
@@ -107,11 +150,15 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       <section className="py-16 md:py-20 bg-dawn">
         <Container className="max-w-3xl mx-auto">
           <FadeInOnScroll>
-            <article className="bg-white rounded-card shadow-card p-8 md:p-12">
+            <article className="bg-white rounded-card shadow-card overflow-hidden">
+              <BlogArt
+                seed={post.slug}
+                motif={post.art}
+                className="w-full aspect-[21/9]"
+              />
+              <div className="p-8 md:p-12">
               <div className="space-y-5 text-night/70 leading-relaxed text-lg">
-                {post.body.map((para, i) => (
-                  <p key={i}>{para}</p>
-                ))}
+                {renderBlocks(post.body)}
               </div>
 
               {/* In-article CTA */}
@@ -127,6 +174,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                     Book a Session
                   </Button>
                 </div>
+              </div>
               </div>
             </article>
           </FadeInOnScroll>
@@ -150,6 +198,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                     category={r.category}
                     date={r.date}
                     slug={r.slug}
+                    art={r.art}
                   />
                 ))}
               </div>

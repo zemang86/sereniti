@@ -72,6 +72,7 @@ export default function BlogPage() {
                 category={post.category}
                 date={post.date}
                 slug={post.slug}
+                art={post.art}
               />
             ))}
           </StaggerChildren>

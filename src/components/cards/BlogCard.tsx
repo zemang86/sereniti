@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Feather } from "lucide-react";
 import { Tag } from "@/components/ui/Tag";
+import { BlogArt, type Motif } from "@/components/blog/BlogArt";
 import { cn } from "@/lib/utils";
 
 interface BlogCardProps {
@@ -9,6 +9,7 @@ interface BlogCardProps {
   category: string;
   date: string;
   slug: string;
+  art?: Motif;
   className?: string;
 }
 
@@ -18,6 +19,7 @@ export function BlogCard({
   category,
   date,
   slug,
+  art,
   className,
 }: BlogCardProps) {
   return (
@@ -28,11 +30,12 @@ export function BlogCard({
         className
       )}
     >
-      {/* Image placeholder */}
-      <div className="relative aspect-[3/2] bg-gradient-to-br from-sunrise/40 to-mist overflow-hidden">
-        <Feather
-          className="absolute bottom-4 right-4 w-8 h-8 text-white/50 transition-transform duration-500 group-hover:scale-110 group-hover:text-white/70"
-          strokeWidth={1.5}
+      {/* Metaphorical brand artwork */}
+      <div className="relative aspect-[3/2] overflow-hidden">
+        <BlogArt
+          seed={slug}
+          motif={art}
+          className="absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-[1.04]"
         />
       </div>
 
