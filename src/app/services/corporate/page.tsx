@@ -7,8 +7,6 @@ import {
   Smartphone,
   Briefcase,
   CheckCircle,
-  TrendingUp,
-  ArrowRight,
 } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -25,6 +23,12 @@ const businessCase = [
   "Early intervention before issues escalate",
 ];
 
+const stats = [
+  { value: "RM1.8B", label: "Annual cost of workplace stress in Malaysia" },
+  { value: "<10%", label: "Of companies have structured mental health programmes" },
+  { value: "4:1", label: "Average ROI on wellness investment" },
+];
+
 const offerings = [
   {
     icon: Brain,
@@ -34,7 +38,7 @@ const offerings = [
   {
     icon: Users,
     title: "On-Site & Online Therapy Sessions",
-    desc: "Embed licensed therapists into your workplace — available for regular on-site visits or private online sessions. Employees book directly. You provide the benefit; we handle the delivery.",
+    desc: "Embed licensed therapists into your workplace, available for regular on-site visits or private online sessions. Employees book directly. You provide the benefit; we handle the delivery.",
   },
   {
     icon: Presentation,
@@ -44,7 +48,7 @@ const offerings = [
   {
     icon: Smartphone,
     title: "Damaura for Teams",
-    desc: "Give every employee access to Damaura — daily mood tracking, sleep monitoring, guided reflections, and personalised wellness insights. A continuous support layer between sessions.",
+    desc: "Give every employee access to Damaura: daily mood tracking, sleep monitoring, guided reflections, and personalised wellness insights. A continuous support layer between sessions.",
   },
   {
     icon: Briefcase,
@@ -62,12 +66,12 @@ const steps = [
   {
     num: "02",
     title: "Custom Proposal",
-    desc: "We design a programme tailored to your size, budget, and priorities — from standalone workshops to comprehensive year-round partnerships.",
+    desc: "We design a programme tailored to your size, budget, and priorities, from standalone workshops to comprehensive year-round partnerships.",
   },
   {
     num: "03",
     title: "Delivery & Reporting",
-    desc: "We deliver the programme and provide regular impact reports — utilisation rates, satisfaction scores, and anonymised wellness trends.",
+    desc: "We deliver the programme and provide regular impact reports: utilisation rates, satisfaction scores, and anonymised wellness trends.",
   },
 ];
 
@@ -95,7 +99,7 @@ export default function CorporatePage() {
           <FadeInOnScroll delay={0.2}>
             <p className="mt-6 text-lg text-night/60 leading-relaxed">
               Serenitilabs delivers structured mental wellness programmes that
-              reduce absenteeism, improve retention, and build resilient teams —
+              reduce absenteeism, improve retention, and build resilient teams,
               backed by licensed therapists and powered by AI.
             </p>
           </FadeInOnScroll>
@@ -140,8 +144,20 @@ export default function CorporatePage() {
             </div>
 
             <FadeInOnScroll direction="right">
-              <div className="bg-cloud/30 rounded-card p-12 flex items-center justify-center aspect-square">
-                <TrendingUp className="w-24 h-24 text-cloud" strokeWidth={1} />
+              <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
+                {stats.map((s) => (
+                  <div
+                    key={s.value}
+                    className="rounded-card bg-white shadow-card p-6 md:p-7"
+                  >
+                    <p className="font-serif text-4xl md:text-5xl text-coral leading-none">
+                      {s.value}
+                    </p>
+                    <p className="mt-3 text-sm text-night/60 leading-relaxed">
+                      {s.label}
+                    </p>
+                  </div>
+                ))}
               </div>
             </FadeInOnScroll>
           </div>
@@ -166,22 +182,24 @@ export default function CorporatePage() {
             </div>
           </FadeInOnScroll>
 
-          <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {offerings.map((o) => (
-              <div
-                key={o.title}
-                className="bg-dawn rounded-card p-8 shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1"
-              >
-                <o.icon className="w-8 h-8 text-coral mb-5" />
-                <h3 className="font-sans text-lg font-semibold text-night mb-3">
-                  {o.title}
-                </h3>
-                <p className="text-night/60 text-sm leading-relaxed">
-                  {o.desc}
-                </p>
-              </div>
-            ))}
-          </StaggerChildren>
+          <FadeInOnScroll>
+            <div className="flex flex-wrap justify-center gap-6">
+              {offerings.map((o) => (
+                <div
+                  key={o.title}
+                  className="w-full sm:w-[calc(50%_-_0.75rem)] lg:w-[calc(33.333%_-_1rem)] bg-dawn rounded-card p-8 shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1"
+                >
+                  <o.icon className="w-8 h-8 text-coral mb-5" />
+                  <h3 className="font-sans text-lg font-semibold text-night mb-3">
+                    {o.title}
+                  </h3>
+                  <p className="text-night/60 text-sm leading-relaxed">
+                    {o.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </FadeInOnScroll>
         </Container>
       </section>
 

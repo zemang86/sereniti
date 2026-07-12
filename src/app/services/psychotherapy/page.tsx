@@ -13,14 +13,14 @@ const tracks = [
   {
     icon: User,
     title: "Adults",
-    description: "For the pressures that build quietly — work stress, anxiety, burnout, life transitions, grief. A safe space to process, understand, and move forward.",
+    description: "For the pressures that build quietly: work stress, anxiety, burnout, life transitions, grief. A safe space to process, understand, and move forward.",
     href: "/services/psychotherapy/adults",
     ctaLabel: "Learn More",
   },
   {
     icon: Baby,
     title: "Children",
-    description: "Developmentally sensitive therapy that helps young minds navigate emotions, behaviour, and challenges — with parents supported every step of the way.",
+    description: "Developmentally sensitive therapy that helps young minds navigate emotions, behaviour, and challenges, with parents supported every step of the way.",
     href: "/services/psychotherapy/children",
     ctaLabel: "Learn More",
   },
@@ -62,7 +62,7 @@ export default function PsychotherapyPage() {
             <p className="mt-6 text-lg text-night/60 leading-relaxed">
               Our licensed therapists provide evidence-based psychotherapy for
               individuals, couples, and families. Every session is tailored to
-              you — your pace, your goals, your comfort. Available online and
+              you: your pace, your goals, your comfort. Available online and
               in-person.
             </p>
           </FadeInOnScroll>

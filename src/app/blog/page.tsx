@@ -29,7 +29,7 @@ export default function BlogPage() {
           <FadeInOnScroll delay={0.2}>
             <p className="mt-6 text-lg text-night/60 leading-relaxed">
               Practical guidance, expert perspectives, and honest conversations
-              about mental health — for individuals and organisations.
+              about mental health, for individuals and organisations.
             </p>
           </FadeInOnScroll>
         </Container>

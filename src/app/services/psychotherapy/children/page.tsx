@@ -11,7 +11,7 @@ export default function ChildrenPage() {
   return (
     <PsychotherapyTemplate
       title="Supporting Young Minds to Thrive"
-      subtitle="Children experience the world with big emotions and developing coping skills. When they struggle — whether with anxiety, behavioural changes, school stress, or family transitions — the right support can make a lasting difference."
+      subtitle="Children experience the world with big emotions and developing coping skills. When they struggle, whether with anxiety, behavioural changes, school stress, or family transitions, the right support can make a lasting difference."
       issuesTitle="Signs Your Child Might Benefit"
       issues={[
         "Persistent sadness, withdrawal, or irritability",

@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { dmSans, dmSerifDisplay } from "@/lib/fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MotionProvider } from "@/components/providers/MotionProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Serenitilabs — Expert Mental Health Support",
+    default: "Serenitilabs: Expert Mental Health Support",
     template: "%s | Serenitilabs",
   },
   description:
@@ -34,9 +35,11 @@ export default function RootLayout({
       className={`${dmSans.variable} ${dmSerifDisplay.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <MotionProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );

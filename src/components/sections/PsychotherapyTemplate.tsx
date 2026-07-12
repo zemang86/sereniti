@@ -105,11 +105,28 @@ export function PsychotherapyTemplate({
           </FadeInOnScroll>
 
           <StaggerChildren className="grid md:grid-cols-3 gap-6 mb-12">
-            {formats.map((f) => (
-              <div key={f} className="bg-dawn rounded-card p-6 text-center">
-                <p className="text-night/70 text-sm">{f}</p>
-              </div>
-            ))}
+            {formats.map((f) => {
+              const lower = f.toLowerCase();
+              const Icon =
+                lower.includes("online") || lower.includes("video")
+                  ? Video
+                  : lower.includes("person") ||
+                      lower.includes("clinic") ||
+                      lower.includes("office")
+                    ? MapPin
+                    : Clock;
+              return (
+                <div
+                  key={f}
+                  className="group bg-dawn rounded-card p-6 shadow-card transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1"
+                >
+                  <span className="mb-4 inline-flex items-center justify-center w-11 h-11 rounded-2xl bg-white">
+                    <Icon className="w-5 h-5 text-coral" strokeWidth={1.75} />
+                  </span>
+                  <p className="text-night/70 text-sm leading-relaxed">{f}</p>
+                </div>
+              );
+            })}
           </StaggerChildren>
 
           {firstSession && (

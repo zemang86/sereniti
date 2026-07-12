@@ -58,7 +58,7 @@ export default function AboutPage() {
             <p className="mt-6 text-lg text-night/60 leading-relaxed">
               Serenitilabs was born from a simple belief: that mental health
               support should be accessible, personal, and empowered by the best
-              of what technology can offer — without ever replacing the human
+              of what technology can offer, without ever replacing the human
               connection at its core.
             </p>
           </FadeInOnScroll>
@@ -69,7 +69,7 @@ export default function AboutPage() {
       <section className="py-20 md:py-28 bg-dawn relative overflow-hidden">
         <Container className="relative z-10 max-w-4xl mx-auto">
           <StaggerChildren className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-card shadow-card p-8 md:p-10">
+            <div className="bg-white rounded-card shadow-card p-8 md:p-10 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1">
               <FadeInOnScroll>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
                   Vision
@@ -80,14 +80,14 @@ export default function AboutPage() {
                 </p>
               </FadeInOnScroll>
             </div>
-            <div className="bg-white rounded-card shadow-card p-8 md:p-10">
+            <div className="bg-white rounded-card shadow-card p-8 md:p-10 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1">
               <FadeInOnScroll delay={0.1}>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
                   Mission
                 </p>
                 <p className="font-serif text-xl text-night leading-relaxed">
                   To deliver expert-led mental health care, enhanced by AI, that
-                  empowers individuals and organisations to thrive — starting in
+                  empowers individuals and organisations to thrive, starting in
                   Malaysia and growing across Southeast Asia.
                 </p>
               </FadeInOnScroll>
@@ -117,7 +117,7 @@ export default function AboutPage() {
                 their reach?
               </p>
               <p>
-                That&apos;s why we built Damaura — an AI companion that supports
+                That&apos;s why we built Damaura, an AI companion that supports
                 clients between sessions with mood tracking, sleep insights,
                 guided reflections, and personalised recommendations. It gives
                 therapists richer context. It gives clients continuous support.
@@ -148,22 +148,50 @@ export default function AboutPage() {
             </div>
           </FadeInOnScroll>
 
-          <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {values.map((v) => (
-              <div
-                key={v.title}
-                className="bg-white rounded-card shadow-card p-8 hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1"
-              >
-                <v.icon className="w-8 h-8 text-coral mb-4" />
-                <h3 className="font-sans text-lg font-semibold text-night mb-2">
-                  {v.title}
-                </h3>
-                <p className="text-night/60 text-sm leading-relaxed">
-                  {v.desc}
-                </p>
-              </div>
-            ))}
-          </StaggerChildren>
+          <FadeInOnScroll>
+            <div className="flex flex-wrap justify-center gap-6">
+              {values.map((v) => (
+                <div
+                  key={v.title}
+                  className="w-full sm:w-[calc(50%_-_0.75rem)] lg:w-[calc(33.333%_-_1rem)] bg-white rounded-card shadow-card p-8 hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1"
+                >
+                  <v.icon className="w-8 h-8 text-coral mb-4" />
+                  <h3 className="font-sans text-lg font-semibold text-night mb-2">
+                    {v.title}
+                  </h3>
+                  <p className="text-night/60 text-sm leading-relaxed">
+                    {v.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </FadeInOnScroll>
+        </Container>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+        <Container className="relative z-10 text-center max-w-2xl mx-auto">
+          <FadeInOnScroll>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
+              Let&apos;s Talk
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night leading-tight">
+              Care That Starts With a Conversation
+            </h2>
+            <p className="mt-4 text-lg text-night/60 leading-relaxed">
+              Whether you&apos;re taking your first step or looking for the right
+              team to walk alongside you, we&apos;re here to listen.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Button href="/about/contact" size="lg" showArrow>
+                Get in Touch
+              </Button>
+              <Button href="/team" variant="ghost" size="lg">
+                Meet Our Team
+              </Button>
+            </div>
+          </FadeInOnScroll>
         </Container>
       </section>
     </>

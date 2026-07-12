@@ -132,7 +132,10 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-14 pt-6 border-t border-dawn/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-dawn/40">
-          <p>&copy; 2026 Serenitilabs Sdn Bhd. All rights reserved.</p>
+          <p>
+            &copy; 2026 Serenitilabs Sdn. Bhd. Reg. No. 202601000377
+            (1662475-P). All rights reserved.
+          </p>
           <div className="flex items-center gap-6">
             <Link href="#" className="hover:text-dawn/60 transition-colors">
               Privacy Policy

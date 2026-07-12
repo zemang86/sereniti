@@ -11,7 +11,7 @@ import { BlobShape } from "@/components/decorative/BlobShape";
 const perks = [
   "Work with a forward-thinking team at the intersection of mental health and technology",
   "Access to Damaura's AI tools to enhance your clinical practice",
-  "Flexible work arrangements — online, in-person, or hybrid",
+  "Flexible work arrangements: online, in-person, or hybrid",
   "Competitive compensation with growth-aligned incentives",
   "Be part of shaping mental health care in Southeast Asia",
 ];

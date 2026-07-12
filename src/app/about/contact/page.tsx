@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, ChevronDown } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
@@ -52,7 +52,7 @@ function ContactForm() {
       <div className="bg-white rounded-card shadow-card p-8 md:p-12 text-center">
         <h3 className="font-serif text-2xl text-night mb-4">Thank You</h3>
         <p className="text-night/60 leading-relaxed">
-          Thank you for reaching out. We&apos;ll get back to you within 1–2
+          Thank you for reaching out. We&apos;ll get back to you within 1-2
           business days.
         </p>
       </div>
@@ -77,7 +77,7 @@ function ContactForm() {
           name="name"
           type="text"
           required
-          className="w-full px-4 py-3 rounded-input bg-white border-0 shadow-card text-night placeholder:text-night/30 focus:ring-2 focus:ring-coral focus:outline-none"
+          className="w-full px-4 py-3 rounded-input bg-white border border-night/12 text-night placeholder:text-night/30 focus:border-coral focus:ring-2 focus:ring-coral/20 outline-none"
           placeholder="Your name"
         />
       </div>
@@ -95,7 +95,7 @@ function ContactForm() {
           name="email"
           type="email"
           required
-          className="w-full px-4 py-3 rounded-input bg-white border-0 shadow-card text-night placeholder:text-night/30 focus:ring-2 focus:ring-coral focus:outline-none"
+          className="w-full px-4 py-3 rounded-input bg-white border border-night/12 text-night placeholder:text-night/30 focus:border-coral focus:ring-2 focus:ring-coral/20 outline-none"
           placeholder="you@example.com"
         />
       </div>
@@ -112,7 +112,7 @@ function ContactForm() {
           id="phone"
           name="phone"
           type="tel"
-          className="w-full px-4 py-3 rounded-input bg-white border-0 shadow-card text-night placeholder:text-night/30 focus:ring-2 focus:ring-coral focus:outline-none"
+          className="w-full px-4 py-3 rounded-input bg-white border border-night/12 text-night placeholder:text-night/30 focus:border-coral focus:ring-2 focus:ring-coral/20 outline-none"
           placeholder="+60 18-398 1795"
         />
       </div>
@@ -125,18 +125,21 @@ function ContactForm() {
         >
           Enquiry Type
         </label>
-        <select
-          id="type"
-          name="enquiry_type"
-          defaultValue={preselected}
-          className="w-full px-4 py-3 rounded-input bg-white border-0 shadow-card text-night focus:ring-2 focus:ring-coral focus:outline-none appearance-none"
-        >
-          {enquiryTypes.map((t) => (
-            <option key={t.value} value={t.value}>
-              {t.label}
-            </option>
-          ))}
-        </select>
+        <div className="relative">
+          <select
+            id="type"
+            name="enquiry_type"
+            defaultValue={preselected}
+            className="w-full px-4 py-3 pr-10 rounded-input bg-white border border-night/12 text-night focus:border-coral focus:ring-2 focus:ring-coral/20 outline-none appearance-none"
+          >
+            {enquiryTypes.map((t) => (
+              <option key={t.value} value={t.value}>
+                {t.label}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-night/40" />
+        </div>
       </div>
 
       {/* Message */}
@@ -152,7 +155,7 @@ function ContactForm() {
           name="message"
           required
           rows={5}
-          className="w-full px-4 py-3 rounded-input bg-white border-0 shadow-card text-night placeholder:text-night/30 focus:ring-2 focus:ring-coral focus:outline-none resize-none"
+          className="w-full px-4 py-3 rounded-input bg-white border border-night/12 text-night placeholder:text-night/30 focus:border-coral focus:ring-2 focus:ring-coral/20 outline-none resize-none"
           placeholder="How can we help?"
         />
       </div>
@@ -195,7 +198,7 @@ export default function ContactPage() {
           <FadeInOnScroll delay={0.2}>
             <p className="mt-6 text-lg text-night/60 leading-relaxed">
               Whether you&apos;re booking a session, enquiring about corporate
-              packages, or just have a question — we&apos;re here.
+              packages, or just have a question, we&apos;re here.
             </p>
           </FadeInOnScroll>
         </Container>
@@ -208,7 +211,18 @@ export default function ContactPage() {
             {/* Form */}
             <div className="lg:col-span-2">
               <FadeInOnScroll>
-                <Suspense fallback={<div className="bg-white rounded-card shadow-card p-8 md:p-12 animate-pulse h-[600px]" />}>
+                <Suspense
+                  fallback={
+                    <div className="bg-white rounded-card shadow-card p-8 md:p-12 animate-pulse space-y-6">
+                      <div className="h-12 rounded-input bg-night/5" />
+                      <div className="h-12 rounded-input bg-night/5" />
+                      <div className="h-12 rounded-input bg-night/5" />
+                      <div className="h-12 rounded-input bg-night/5" />
+                      <div className="h-32 rounded-input bg-night/5" />
+                      <div className="h-12 rounded-button bg-night/5" />
+                    </div>
+                  }
+                >
                   <ContactForm />
                 </Suspense>
               </FadeInOnScroll>
@@ -218,7 +232,7 @@ export default function ContactPage() {
             <div>
               <FadeInOnScroll delay={0.2}>
                 <div className="space-y-6">
-                  <div className="bg-white rounded-card shadow-card p-6">
+                  <div className="bg-white rounded-card shadow-card p-6 transition-all hover:shadow-card-hover hover:-translate-y-0.5">
                     <div className="flex items-start gap-4">
                       <Mail className="w-5 h-5 text-coral mt-0.5" />
                       <div>
@@ -233,7 +247,7 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  <div className="bg-white rounded-card shadow-card p-6">
+                  <div className="bg-white rounded-card shadow-card p-6 transition-all hover:shadow-card-hover hover:-translate-y-0.5">
                     <div className="flex items-start gap-4">
                       <Phone className="w-5 h-5 text-coral mt-0.5" />
                       <div>

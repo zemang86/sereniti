@@ -1,6 +1,6 @@
 "use client";
 
-import { Shield, Eye, Lock, Users, BarChart3, CheckCircle } from "lucide-react";
+import { Shield, Eye, Lock, BarChart3, CheckCircle } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
@@ -17,7 +17,7 @@ const steps = [
   {
     num: "02",
     title: "Get Your Personalised Report",
-    desc: "Receive a clear, easy-to-understand summary of your emotional wellbeing — covering stress levels, mood patterns and areas that may benefit from professional support.",
+    desc: "Receive a clear, easy-to-understand summary of your emotional wellbeing, covering stress levels, mood patterns and areas that may benefit from professional support.",
   },
   {
     num: "03",
@@ -57,7 +57,7 @@ export default function ScreeningPage() {
           <FadeInOnScroll delay={0.2}>
             <p className="mt-6 text-lg text-night/60 leading-relaxed">
               Our AI-guided screening is private, clinically informed, and
-              designed to give you a clear starting point — whether you&apos;re
+              designed to give you a clear starting point, whether you&apos;re
               checking in for yourself or rolling it out across your
               organisation.
             </p>
@@ -123,7 +123,7 @@ export default function ScreeningPage() {
                 <p className="mt-6 text-night/60 leading-relaxed">
                   Deploy Damaura-powered screening as part of your corporate
                   wellness programme. Get anonymised, aggregated insights into
-                  your team&apos;s wellbeing — without compromising individual
+                  your team&apos;s wellbeing, without compromising individual
                   privacy.
                 </p>
                 <ul className="mt-6 space-y-3">

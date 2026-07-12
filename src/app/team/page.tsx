@@ -8,6 +8,24 @@ import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
 import { teamMembers } from "@/content/team";
 
+const approaches = [
+  "Cognitive Behavioural Therapy (CBT)",
+  "Acceptance & Commitment Therapy (ACT)",
+  "Dialectical Behaviour Therapy (DBT)",
+  "Psychodynamic Therapy",
+  "Trauma-Focused Therapy",
+  "Person-Centred & Mindfulness-Based",
+];
+
+const expertise = [
+  "Anxiety, Depression & Burnout",
+  "Trauma & PTSD",
+  "ADHD & Autism Spectrum (ASD)",
+  "Children, Adolescents & Adults",
+  "Psycho-Oncology & Grief",
+  "Workplace Mental Health",
+];
+
 export default function TeamPage() {
   return (
     <>
@@ -40,7 +58,7 @@ export default function TeamPage() {
       {/* Team Grid */}
       <section className="py-20 md:py-28 bg-dawn relative overflow-hidden">
         <Container className="relative z-10">
-          <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {teamMembers.map((member) => (
               <TeamCard
                 key={member.slug}
@@ -48,10 +66,65 @@ export default function TeamPage() {
                 role={member.role}
                 specialties={member.specialties}
                 slug={member.slug}
+                photo={member.photo}
                 isLead={member.isLead}
               />
             ))}
           </StaggerChildren>
+        </Container>
+      </section>
+
+      {/* Clinical Capabilities */}
+      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+        <ParallaxLayer speed={0.15} className="absolute inset-0 pointer-events-none">
+          <BlobShape variant={1} color="#F5D3B8" size={380} opacity={0.08} blur={40} className="bottom-[5%] -left-[6%]" />
+        </ParallaxLayer>
+
+        <Container className="relative z-10">
+          <FadeInOnScroll>
+            <div className="text-center mb-14">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
+                Clinical Capabilities
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night">
+                Grounded in Evidence, Delivered with Care
+              </h2>
+            </div>
+          </FadeInOnScroll>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <FadeInOnScroll>
+              <div className="h-full bg-dawn rounded-card p-8 md:p-10">
+                <h3 className="font-sans text-lg font-semibold text-night mb-6">
+                  Therapeutic Approaches
+                </h3>
+                <ul className="space-y-3.5">
+                  {approaches.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-coral shrink-0" />
+                      <span className="text-night/70">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeInOnScroll>
+
+            <FadeInOnScroll delay={0.15}>
+              <div className="h-full bg-dawn rounded-card p-8 md:p-10">
+                <h3 className="font-sans text-lg font-semibold text-night mb-6">
+                  Areas of Expertise
+                </h3>
+                <ul className="space-y-3.5">
+                  {expertise.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-coral shrink-0" />
+                      <span className="text-night/70">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeInOnScroll>
+          </div>
         </Container>
       </section>
     </>

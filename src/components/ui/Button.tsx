@@ -15,7 +15,7 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-night text-white hover:bg-coral",
+    "bg-night text-white hover:bg-coral shadow-[0_4px_14px_rgba(28,28,30,0.18)] hover:shadow-[0_6px_20px_rgba(224,122,75,0.35)]",
   secondary:
     "bg-white text-night shadow-card hover:shadow-card-hover",
   ghost:
@@ -38,7 +38,8 @@ export function Button({
   type = "button",
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 font-semibold rounded-button transition-all duration-300",
+    "group inline-flex items-center justify-center gap-2 font-semibold rounded-button transition-all duration-300",
+    "active:scale-[0.97] motion-reduce:active:scale-100",
     variants[variant],
     sizes[size],
     className

@@ -11,7 +11,7 @@ export default function CouplesPage() {
   return (
     <PsychotherapyTemplate
       title="Every Relationship Deserves Support"
-      subtitle="Relationships take work, and seeking help isn't a sign of failure — it's a sign of commitment. Couples therapy provides a structured, neutral space where both partners can be heard, understood, and guided toward healthier patterns."
+      subtitle="Relationships take work, and seeking help isn't a sign of failure. It's a sign of commitment. Couples therapy provides a structured, neutral space where both partners can be heard, understood, and guided toward healthier patterns."
       issuesTitle="Common Reasons Couples Seek Help"
       issues={[
         "Communication breakdowns and recurring arguments",

@@ -5,6 +5,9 @@ import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
 import { BlogCard } from "@/components/cards/BlogCard";
+import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
+import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
+import { BlobShape } from "@/components/decorative/BlobShape";
 import { blogPosts } from "@/content/blog";
 import type { Metadata } from "next";
 
@@ -38,6 +41,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
         style={{ background: "var(--gradient-sunrise)" }}
       >
+        <ParallaxLayer speed={0.2} className="absolute inset-0 pointer-events-none">
+          <BlobShape variant={2} color="#C9B8DB" size={450} opacity={0.1} blur={40} className="top-[5%] -right-[8%]" />
+        </ParallaxLayer>
+
         <Container className="relative z-10 max-w-3xl mx-auto">
           <Link
             href="/blog"
@@ -49,40 +56,42 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
           <div className="flex items-center gap-3 mb-4">
             <Tag variant="lavender">{post.category}</Tag>
-            <span className="text-xs text-night/40">{post.date}</span>
+            <span className="text-xs text-night/60">{post.date}</span>
           </div>
 
           <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night leading-tight">
             {post.title}
           </h1>
-          <p className="mt-4 text-night/50 text-sm">By {post.author}</p>
+          <p className="mt-4 text-night/60 text-sm">By {post.author}</p>
         </Container>
       </section>
 
       <section className="py-16 md:py-20 bg-dawn">
         <Container className="max-w-3xl mx-auto">
-          <article className="bg-white rounded-card shadow-card p-8 md:p-12">
-            <div className="space-y-5 text-night/70 leading-relaxed text-[17px]">
-              {post.body.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-
-            {/* In-article CTA */}
-            <div className="mt-12 pt-8 border-t border-night/10 text-center">
-              <p className="text-night/50 text-sm mb-4">
-                Curious about your mental health?
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Button href="/services/screening" showArrow>
-                  Start a Free AI Screening
-                </Button>
-                <Button href="/about/contact" variant="ghost">
-                  Book a Session
-                </Button>
+          <FadeInOnScroll>
+            <article className="bg-white rounded-card shadow-card p-8 md:p-12">
+              <div className="space-y-5 text-night/70 leading-relaxed text-lg">
+                {post.body.map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
               </div>
-            </div>
-          </article>
+
+              {/* In-article CTA */}
+              <div className="mt-12 pt-8 border-t border-night/10 text-center">
+                <p className="text-night/50 text-sm mb-4">
+                  Curious about your mental health?
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Button href="/services/screening" showArrow>
+                    Start a Free AI Screening
+                  </Button>
+                  <Button href="/about/contact" variant="ghost">
+                    Book a Session
+                  </Button>
+                </div>
+              </div>
+            </article>
+          </FadeInOnScroll>
         </Container>
       </section>
 
@@ -93,18 +102,20 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             <h2 className="font-serif text-2xl md:text-3xl text-night text-center mb-10">
               More to Explore
             </h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {related.map((r) => (
-                <BlogCard
-                  key={r.slug}
-                  title={r.title}
-                  excerpt={r.excerpt}
-                  category={r.category}
-                  date={r.date}
-                  slug={r.slug}
-                />
-              ))}
-            </div>
+            <FadeInOnScroll>
+              <div className="grid md:grid-cols-3 gap-6">
+                {related.map((r) => (
+                  <BlogCard
+                    key={r.slug}
+                    title={r.title}
+                    excerpt={r.excerpt}
+                    category={r.category}
+                    date={r.date}
+                    slug={r.slug}
+                  />
+                ))}
+              </div>
+            </FadeInOnScroll>
           </Container>
         </section>
       )}

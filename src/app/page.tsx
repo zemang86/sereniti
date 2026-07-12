@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Brain, Heart, Building, Smartphone, ArrowRight } from "lucide-react";
+import { Brain, Heart, Building } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -13,7 +13,6 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
-import { GlowEffect } from "@/components/decorative/GlowEffect";
 import { teamMembers } from "@/content/team";
 
 /* ─── Hero ─── */
@@ -67,7 +66,7 @@ function HeroSection() {
             <FadeInOnScroll delay={0.3}>
               <p className="mt-6 text-lg md:text-xl text-night/60 leading-relaxed max-w-xl">
                 Serenitilabs combines expert therapists with AI-powered tools to
-                deliver accessible, personalised mental health care — for
+                deliver accessible, personalised mental health care, for
                 individuals and organisations.
               </p>
             </FadeInOnScroll>
@@ -131,7 +130,7 @@ function ServicesSection() {
           <SectionHeader
             overline="Our Services"
             title="How We Can Help"
-            subtitle="Whether you're an individual seeking clarity or an organisation investing in your team's wellbeing — we have a pathway for you."
+            subtitle="Whether you're an individual seeking clarity or an organisation investing in your team's wellbeing, we have a pathway for you."
           />
         </FadeInOnScroll>
 
@@ -139,7 +138,7 @@ function ServicesSection() {
           <ServiceCard
             icon={Brain}
             title="Digital Mental Health Screening"
-            description="A confidential, AI-guided assessment that helps individuals understand their mental health — and helps organisations identify how to best support their teams."
+            description="A confidential, AI-guided assessment that helps individuals understand their mental health, and helps organisations identify how to best support their teams."
             href="/services/screening"
             ctaLabel="Learn More"
             variant="indigo"
@@ -154,7 +153,7 @@ function ServicesSection() {
           <ServiceCard
             icon={Building}
             title="Corporate Services"
-            description="Structured mental wellness programmes for organisations — from employee screening to on-site therapy sessions and leadership workshops."
+            description="Structured mental wellness programmes for organisations: from employee screening to on-site therapy sessions and leadership workshops."
             href="/services/corporate"
             ctaLabel="Talk to Us"
             variant="mist"
@@ -202,9 +201,9 @@ function TrustSection() {
 
 /* ─── Damaura Mockup Carousel ─── */
 const damauraMockups = [
-  { src: "/images/damaura-mock-01.png", alt: "Damaura app — 5 Pillars of Wellness dashboard" },
-  { src: "/images/damaura-mock-02.png", alt: "Damaura app — Your Wellness insights and mood tracker" },
-  { src: "/images/damaura-mock-03.png", alt: "Damaura app — Talk to Damaura AI and daily reflections" },
+  { src: "/images/damaura-mock-01.png", alt: "Damaura app: 5 Pillars of Wellness dashboard" },
+  { src: "/images/damaura-mock-02.png", alt: "Damaura app: Your Wellness insights and mood tracker" },
+  { src: "/images/damaura-mock-03.png", alt: "Damaura app: Talk to Damaura AI and daily reflections" },
 ];
 
 function DamauraMockupCarousel() {
@@ -304,7 +303,7 @@ function DamauraSpolight() {
                 Between sessions, your people aren&apos;t alone. Damaura is our
                 AI-powered companion that provides daily mood tracking, sleep
                 monitoring, guided reflections, and personalised mental health
-                insights — all from a single app.
+                insights, all from a single app.
               </p>
               <p className="mt-4 text-night/60 leading-relaxed">
                 For organisations, Damaura means real-time wellness data, early
@@ -350,7 +349,7 @@ function TeamTeaser() {
           />
         </FadeInOnScroll>
 
-        <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {teamMembers.map((member) => (
             <TeamCard
               key={member.slug}
@@ -358,6 +357,7 @@ function TeamTeaser() {
               role={member.role}
               specialties={member.specialties}
               slug={member.slug}
+              photo={member.photo}
               isLead={member.isLead}
             />
           ))}
@@ -420,7 +420,7 @@ function Testimonials() {
         <FadeInOnScroll>
           <SectionHeader
             title="What People Are Saying"
-            subtitle="Placeholder testimonials — real stories coming soon."
+            subtitle="Placeholder testimonials. Real stories coming soon."
           />
         </FadeInOnScroll>
 
