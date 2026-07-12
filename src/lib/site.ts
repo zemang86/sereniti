@@ -25,9 +25,9 @@ export const site = {
     countryName: "Malaysia",
   },
   areaServed: "Malaysia",
-  // Real social profile URLs (used for schema.org sameAs). Empty until provided.
+  // Real social profile URLs (used for schema.org sameAs). Empty = omitted.
   social: {
-    instagram: "",
+    instagram: "https://www.instagram.com/damaura.ai/",
     linkedin: "",
     facebook: "",
   },
