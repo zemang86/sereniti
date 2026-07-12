@@ -3,25 +3,69 @@ import { dmSans, dmSerifDisplay } from "@/lib/fonts";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/providers/MotionProvider";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, organizationNode, websiteNode } from "@/lib/schema";
+import { site } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: {
-    default: "Serenitilabs: Expert Mental Health Support",
+    default: "Serenitilabs — Mental Health Care & Therapy in Malaysia",
     template: "%s | Serenitilabs",
   },
-  description:
-    "Expert-led mental health support, enhanced by AI. Psychotherapy for individuals, couples, and families. Corporate wellness programmes. Powered by Damaura.",
+  description: site.shortDescription,
+  applicationName: site.name,
   keywords: [
-    "mental health",
-    "therapy",
+    "mental health Malaysia",
+    "therapy Malaysia",
     "psychotherapy",
     "counselling",
-    "Malaysia",
+    "clinical psychologist Malaysia",
+    "online therapy",
     "corporate wellness",
+    "employee mental health",
+    "mental health screening",
     "Damaura",
     "Serenitilabs",
   ],
+  authors: [{ name: site.legalName, url: site.url }],
+  creator: site.legalName,
+  publisher: site.legalName,
+  category: "Health",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    title: "Serenitilabs — Mental Health Care & Therapy in Malaysia",
+    description: site.shortDescription,
+    url: site.url,
+    locale: "en_MY",
+    alternateLocale: ["ms_MY"],
+    images: [
+      { url: site.ogImage, width: 1200, height: 630, alt: "Serenitilabs" },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Serenitilabs — Mental Health Care & Therapy in Malaysia",
+    description: site.shortDescription,
+    images: [site.ogImage],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  formatDetection: { telephone: true, email: true, address: true },
 };
 
 export default function RootLayout({
@@ -31,10 +75,11 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="en-MY"
       className={`${dmSans.variable} ${dmSerifDisplay.variable}`}
     >
       <body className="min-h-screen flex flex-col antialiased">
+        <JsonLd data={graph(organizationNode(), websiteNode())} />
         <MotionProvider>
           <Header />
           <main className="flex-1">{children}</main>

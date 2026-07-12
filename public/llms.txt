@@ -1,0 +1,28 @@
+# Serenitilabs
+
+> Serenitilabs Sdn. Bhd. is a Malaysian mental health technology company that combines licensed clinical expertise with AI-powered tools to deliver accessible, personalised mental health care for individuals and organisations. Based in Kuala Lumpur, it offers psychotherapy, digital mental health screening, and corporate wellness programmes across Malaysia, in English and Bahasa Malaysia, online and in person, powered by its AI companion, Damaura.
+
+Key facts:
+- Legal name: Serenitilabs Sdn. Bhd. (SSM registration 202601000377 / 1662475-P)
+- Founded: 5 January 2026, headquartered in Kuala Lumpur, Malaysia
+- Sector: Healthcare Technology / Mental Wellness
+- Contact: hello@sereniti.my, +60 18-398 1795
+- Languages: English, Bahasa Malaysia
+- Tagline: Expert care. Intelligent support.
+
+## Services
+- [Services overview](https://sereniti.my/services): The three core ways Serenitilabs supports mental health, for individuals and organisations.
+- [Digital Mental Health Screening](https://sereniti.my/services/screening): Confidential, AI-guided assessment via Damaura, for individuals or across a whole workforce with anonymised aggregate reporting.
+- [Psychotherapy](https://sereniti.my/services/psychotherapy): Evidence-based therapy by licensed clinicians, with specialised tracks for adults, children, couples, and families, online or in person.
+- [Corporate Wellness Programmes](https://sereniti.my/services/corporate): End-to-end workplace mental wellness: employee screening, on-site and online therapy, workshops, leadership briefings, and Damaura for teams.
+
+## Company
+- [About Serenitilabs](https://sereniti.my/about): Vision, mission, and the human-plus-AI approach to mental health care.
+- [Our Team](https://sereniti.my/team): Licensed clinical psychologists and their credentials, specialties, and therapeutic approaches.
+- [Contact and booking](https://sereniti.my/about/contact): How to reach the team, enquire about corporate packages, or book a session.
+
+## Resources
+- [Blog](https://sereniti.my/blog): Articles on mental health, therapy, and workplace wellbeing.
+
+## Optional
+- [Careers](https://sereniti.my/about/careers): Opportunities to join Serenitilabs.

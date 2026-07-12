@@ -8,6 +8,9 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
 import { teamMembers } from "@/content/team";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, breadcrumbNode, personNode } from "@/lib/schema";
+import { site } from "@/lib/site";
 import type { Metadata } from "next";
 
 type Params = Promise<{ slug: string }>;
@@ -20,9 +23,18 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { slug } = await params;
   const member = teamMembers.find((m) => m.slug === slug);
   if (!member) return {};
+  const description = `${member.role} at Serenitilabs. ${member.specialties.slice(0, 3).join(", ")}.`;
   return {
     title: member.name,
-    description: `${member.role} at Serenitilabs. ${member.specialties.slice(0, 3).join(", ")}.`,
+    description,
+    alternates: { canonical: `/team/${slug}` },
+    openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+      title: member.name,
+      description,
+      url: `${site.url}/team/${slug}`,
+      type: "profile",
+    },
   };
 }
 
@@ -35,6 +47,16 @@ export default async function TeamMemberPage({ params }: { params: Params }) {
 
   return (
     <>
+      <JsonLd
+        data={graph(
+          personNode(member),
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "Team", path: "/team" },
+            { name: member.name, path: `/team/${member.slug}` },
+          ])
+        )}
+      />
       {/* Hero */}
       <section
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"

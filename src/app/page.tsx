@@ -13,6 +13,7 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
+import { FAQ } from "@/components/sections/FAQ";
 import { teamMembers } from "@/content/team";
 
 /* ─── Hero ─── */
@@ -501,6 +502,7 @@ export default function HomePage() {
       <DamauraSpolight />
       <TeamTeaser />
       <Testimonials />
+      <FAQ />
       <FinalCTA />
     </>
   );

@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import { User, Baby, Heart, Users } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -8,6 +7,24 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, breadcrumbNode, serviceNode } from "@/lib/schema";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Psychotherapy",
+  description:
+    "Serenitilabs provides evidence-based psychotherapy in Malaysia with licensed therapists, offering tracks for adults, children, couples, and families.",
+  alternates: { canonical: "/services/psychotherapy" },
+  openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+    title: "Psychotherapy",
+    description:
+      "Serenitilabs provides evidence-based psychotherapy in Malaysia with licensed therapists, offering tracks for adults, children, couples, and families.",
+    url: `${site.url}/services/psychotherapy`,
+    type: "website",
+  },
+};
 
 const tracks = [
   {
@@ -43,6 +60,21 @@ const tracks = [
 export default function PsychotherapyPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+            { name: "Psychotherapy", path: "/services/psychotherapy" },
+          ]),
+          serviceNode({
+            name: "Psychotherapy",
+            description:
+              "One-on-one and group therapy with licensed professionals. We offer specialised tracks for adults, children, couples, and families, online or face-to-face.",
+            path: "/services/psychotherapy",
+          })
+        )}
+      />
       {/* Hero */}
       <section
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"

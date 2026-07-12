@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import {
   Brain,
   Users,
@@ -14,6 +13,24 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, breadcrumbNode, serviceNode } from "@/lib/schema";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Corporate Wellness Programmes",
+  description:
+    "Serenitilabs delivers corporate wellness programmes for Malaysian workplaces: employee screening, on-site and online therapy, workshops, and Damaura for teams.",
+  alternates: { canonical: "/services/corporate" },
+  openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+    title: "Corporate Wellness Programmes",
+    description:
+      "Serenitilabs delivers corporate wellness programmes for Malaysian workplaces: employee screening, on-site and online therapy, workshops, and Damaura for teams.",
+    url: `${site.url}/services/corporate`,
+    type: "website",
+  },
+};
 
 const businessCase = [
   "Reduced absenteeism and presenteeism",
@@ -78,6 +95,21 @@ const steps = [
 export default function CorporatePage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+            { name: "Corporate Wellness Programmes", path: "/services/corporate" },
+          ]),
+          serviceNode({
+            name: "Corporate Wellness Programmes",
+            description:
+              "End-to-end employee wellness programmes designed for Malaysian workplaces. From screening and workshops to embedded therapy sessions and Damaura access.",
+            path: "/services/corporate",
+          })
+        )}
+      />
       {/* Hero */}
       <section
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"

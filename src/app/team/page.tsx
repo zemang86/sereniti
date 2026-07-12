@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { TeamCard } from "@/components/cards/TeamCard";
 import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
@@ -7,6 +6,24 @@ import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
 import { teamMembers } from "@/content/team";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, breadcrumbNode, personNode } from "@/lib/schema";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Our Team",
+  description:
+    "Meet the Serenitilabs team of licensed psychologists delivering evidence-based mental health care with genuine warmth, making support more accessible in Malaysia.",
+  alternates: { canonical: "/team" },
+  openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+    title: "Our Team",
+    description:
+      "Meet the Serenitilabs team of licensed psychologists delivering evidence-based mental health care with genuine warmth, making support more accessible in Malaysia.",
+    url: `${site.url}/team`,
+    type: "website",
+  },
+};
 
 const approaches = [
   "Cognitive Behavioural Therapy (CBT)",
@@ -29,6 +46,15 @@ const expertise = [
 export default function TeamPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "Team", path: "/team" },
+          ]),
+          ...teamMembers.map(personNode)
+        )}
+      />
       {/* Hero */}
       <section
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"

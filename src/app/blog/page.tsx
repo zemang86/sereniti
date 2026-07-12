@@ -1,5 +1,3 @@
-"use client";
-
 import { Container } from "@/components/layout/Container";
 import { BlogCard } from "@/components/cards/BlogCard";
 import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
@@ -7,10 +5,37 @@ import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
 import { blogPosts } from "@/content/blog";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, breadcrumbNode } from "@/lib/schema";
+import { absoluteUrl } from "@/lib/site";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Practical guidance and expert perspectives on mental health and workplace wellbeing from Serenitilabs, for individuals and organisations in Malaysia.",
+  alternates: { canonical: "/blog" },
+  openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+    type: "website",
+    title: "Blog",
+    description:
+      "Practical guidance and expert perspectives on mental health and workplace wellbeing from Serenitilabs, for individuals and organisations in Malaysia.",
+    url: absoluteUrl("/blog"),
+  },
+};
 
 export default function BlogPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+          ])
+        )}
+      />
       {/* Hero */}
       <section
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"

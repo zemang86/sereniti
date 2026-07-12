@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Brain, Heart, Building } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -9,10 +8,54 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, breadcrumbNode, serviceNode } from "@/lib/schema";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Mental Health Services",
+  description:
+    "Explore Serenitilabs mental health services in Malaysia: AI-powered screening, psychotherapy for individuals and families, and corporate wellness programmes.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+    title: "Mental Health Services",
+    description:
+      "Explore Serenitilabs mental health services in Malaysia: AI-powered screening, psychotherapy for individuals and families, and corporate wellness programmes.",
+    url: `${site.url}/services`,
+    type: "website",
+  },
+};
 
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+          ]),
+          serviceNode({
+            name: "Digital Mental Health Screening",
+            description:
+              "Start with understanding. Our AI-powered screening tool provides a confidential, personalised assessment of your mental health, in under 10 minutes.",
+            path: "/services/screening",
+          }),
+          serviceNode({
+            name: "Psychotherapy",
+            description:
+              "One-on-one and group therapy with licensed professionals. We offer specialised tracks for adults, children, couples, and families, online or face-to-face.",
+            path: "/services/psychotherapy",
+          }),
+          serviceNode({
+            name: "Corporate Wellness Programmes",
+            description:
+              "End-to-end employee wellness programmes designed for Malaysian workplaces. From screening and workshops to embedded therapy sessions and Damaura access.",
+            path: "/services/corporate",
+          })
+        )}
+      />
       {/* Hero */}
       <section
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"

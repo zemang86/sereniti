@@ -9,6 +9,9 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
 import { blogPosts } from "@/content/blog";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, blogPostingNode, breadcrumbNode } from "@/lib/schema";
+import { absoluteUrl } from "@/lib/site";
 import type { Metadata } from "next";
 
 type Params = Promise<{ slug: string }>;
@@ -21,9 +24,26 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { slug } = await params;
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return {};
+  const url = absoluteUrl(`/blog/${slug}`);
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+      type: "article",
+      title: post.title,
+      description: post.excerpt,
+      url,
+      publishedTime: post.date,
+      authors: [post.author],
+    },
+    twitter: {
+      images: ["/opengraph-image.png"],
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+    },
   };
 }
 
@@ -36,6 +56,24 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
   return (
     <>
+      <JsonLd
+        data={graph(
+          blogPostingNode({
+            slug: post.slug,
+            title: post.title,
+            excerpt: post.excerpt,
+            date: post.date,
+            category: post.category,
+            author: post.author,
+          }),
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ])
+        )}
+      />
+
       {/* Article */}
       <section
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"

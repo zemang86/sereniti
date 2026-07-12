@@ -1,0 +1,83 @@
+# Serenitilabs — Full Company Reference
+
+> Serenitilabs Sdn. Bhd. is a Malaysian mental health technology company that combines licensed clinical expertise with AI-powered tools to deliver accessible, personalised mental health care for individuals and organisations. This document is a complete, plain-text reference for AI assistants and search engines.
+
+## Company facts
+
+- Legal name: Serenitilabs Sdn. Bhd.
+- SSM registration: 202601000377 (1662475-P)
+- Founded: 5 January 2026
+- Headquarters: Kuala Lumpur, Malaysia
+- Sector: Healthcare Technology / Mental Wellness
+- Area served: Malaysia (services available online and in person)
+- Languages: English, Bahasa Malaysia
+- Email: hello@sereniti.my
+- Phone / WhatsApp: +60 18-398 1795
+- Website: https://sereniti.my
+- Tagline: Expert care. Intelligent support.
+
+## Vision and mission
+
+Vision: A world where seeking mental health support is as natural and accessible as seeing a doctor for a physical checkup.
+
+Mission: To deliver expert-led mental health care, enhanced by AI, that empowers individuals and organisations to thrive, starting in Malaysia.
+
+Approach: Serenitilabs pairs licensed human clinicians with Damaura, its AI companion. Technology extends the reach of therapists; it does not replace them. The AI makes the practice better; the people make it Serenitilabs.
+
+## Services
+
+### Digital Mental Health Screening
+AI-powered, clinically informed screening delivered through Damaura. Deployable for individuals or across an entire workforce, with anonymised aggregate reporting for organisations.
+
+### Psychotherapy
+Evidence-based therapy by licensed professionals, with specialised tracks for adults, children, couples, and families. Available online and in person.
+
+### Corporate Wellness Programmes
+End-to-end employee mental wellness: employee screening, on-site and online therapy sessions, workshops and training, manager and leadership briefings, and Damaura access for continuous team support. Engagement model: (1) Discovery, (2) Custom Proposal, (3) Delivery and Reporting. Target sectors include Government and GLCs, Financial Services, Technology, Higher Education, Healthcare, Manufacturing, and SMEs.
+
+Business case: workplace stress costs Malaysian employers an estimated RM1.8 billion annually in lost productivity, yet fewer than 10% of companies have structured mental health programmes. Average return on wellness investment is about 4:1.
+
+## Damaura (AI companion platform)
+
+Damaura is Serenitilabs' proprietary AI companion that bridges the gap between therapy sessions. Features: daily mood and sleep tracking, guided reflections and journaling, AI-guided screening, personalised wellness insights, anonymised workforce analytics, and privacy-compliant data handling.
+
+## Team
+
+### Sarah Aleesa Aguinaldo — Lead Therapist and Clinical Director
+Licensed clinical psychologist with over 8 years of experience across clinical and non-clinical settings. Integrates cognitive-behavioural, person-centred, and mindfulness-based approaches, with expertise in anxiety disorders, depression, trauma recovery, and workplace burnout. Qualifications include a Master of Clinical Psychology and registration with the Malaysian Allied Health Professions Council.
+
+### Ummu Nazra Nadzam — Registered Clinical Psychologist and HRD Corp Accredited Trainer
+Works with trauma, ADHD, autism spectrum conditions, anxiety, mood disorders, and psycho-oncology across all age groups. Integrates Acceptance and Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT), psychodynamic, and trauma-focused approaches. Registered Clinical Psychologist (MAHPC CP00227), HRD Corp Accredited Trainer (28008), and a National Paralympic Classifier.
+
+## Clinical capabilities
+
+Therapeutic approaches: Cognitive Behavioural Therapy (CBT), Acceptance and Commitment Therapy (ACT), Dialectical Behaviour Therapy (DBT), Psychodynamic Therapy, Trauma-Focused Therapy, Person-Centred and Mindfulness-Based approaches.
+
+Areas of expertise: anxiety, depression and burnout; trauma and PTSD; ADHD and autism spectrum (ASD); children, adolescents and adults; psycho-oncology and grief; workplace mental health.
+
+## Frequently asked questions
+
+Q: What is Serenitilabs?
+A: A Malaysian mental health technology company that combines licensed clinical expertise with AI-powered tools to deliver psychotherapy, digital screening, and corporate wellness programmes for individuals and organisations.
+
+Q: What services does Serenitilabs offer?
+A: Psychotherapy for adults, children, couples, and families; AI-guided digital mental health screening; and corporate wellness programmes for organisations.
+
+Q: Does Serenitilabs offer online therapy?
+A: Yes. Therapy is available both online and in person, in English and Bahasa Malaysia.
+
+Q: Where is Serenitilabs located?
+A: Kuala Lumpur, Malaysia, serving clients across the country.
+
+Q: What is Damaura?
+A: Damaura is Serenitilabs' AI companion that supports people between sessions with mood tracking, sleep monitoring, guided reflections, and personalised wellness insights.
+
+Q: How do I start or book a session?
+A: Contact the team at hello@sereniti.my or +60 18-398 1795, or use the contact form at https://sereniti.my/about/contact.
+
+## Contact
+
+Email: hello@sereniti.my
+Phone / WhatsApp: +60 18-398 1795
+Location: Kuala Lumpur, Malaysia
+Contact page: https://sereniti.my/about/contact

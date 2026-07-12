@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Heart, Compass, FlaskConical, Globe, Eye } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -7,6 +6,24 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, breadcrumbNode } from "@/lib/schema";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Serenitilabs is a Malaysian mental health company delivering expert-led, evidence-based care enhanced by AI, making support accessible across Southeast Asia.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+    title: "About Us",
+    description:
+      "Serenitilabs is a Malaysian mental health company delivering expert-led, evidence-based care enhanced by AI, making support accessible across Southeast Asia.",
+    url: `${site.url}/about`,
+    type: "website",
+  },
+};
 
 const values = [
   {
@@ -39,6 +56,14 @@ const values = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ])
+        )}
+      />
       {/* Hero */}
       <section
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"

@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import { Shield, Eye, Lock, BarChart3, CheckCircle } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -7,6 +6,24 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, breadcrumbNode, serviceNode } from "@/lib/schema";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Digital Mental Health Screening",
+  description:
+    "Serenitilabs offers AI-guided digital mental health screening in Malaysia: a confidential, clinically informed assessment of your wellbeing in under 10 minutes.",
+  alternates: { canonical: "/services/screening" },
+  openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+    title: "Digital Mental Health Screening",
+    description:
+      "Serenitilabs offers AI-guided digital mental health screening in Malaysia: a confidential, clinically informed assessment of your wellbeing in under 10 minutes.",
+    url: `${site.url}/services/screening`,
+    type: "website",
+  },
+};
 
 const steps = [
   {
@@ -36,6 +53,21 @@ const corpFeatures = [
 export default function ScreeningPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+            { name: "Digital Screening", path: "/services/screening" },
+          ]),
+          serviceNode({
+            name: "Digital Mental Health Screening",
+            description:
+              "Start with understanding. Our AI-powered screening tool provides a confidential, personalised assessment of your mental health, in under 10 minutes.",
+            path: "/services/screening",
+          })
+        )}
+      />
       {/* Hero */}
       <section
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"

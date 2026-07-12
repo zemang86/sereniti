@@ -1,5 +1,4 @@
-"use client";
-
+import type { Metadata } from "next";
 import { CheckCircle } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -7,6 +6,24 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, breadcrumbNode } from "@/lib/schema";
+import { site } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Careers",
+  description:
+    "Join Serenitilabs, a Malaysian mental health company hiring therapists, counsellors, and wellness professionals to deliver human care enhanced by AI tools.",
+  alternates: { canonical: "/about/careers" },
+  openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+    title: "Careers",
+    description:
+      "Join Serenitilabs, a Malaysian mental health company hiring therapists, counsellors, and wellness professionals to deliver human care enhanced by AI tools.",
+    url: `${site.url}/about/careers`,
+    type: "website",
+  },
+};
 
 const perks = [
   "Work with a forward-thinking team at the intersection of mental health and technology",
@@ -26,6 +43,15 @@ const roles = [
 export default function CareersPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+            { name: "Careers", path: "/about/careers" },
+          ])
+        )}
+      />
       {/* Hero */}
       <section
         className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"

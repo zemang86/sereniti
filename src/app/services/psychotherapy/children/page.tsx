@@ -1,15 +1,38 @@
 import { PsychotherapyTemplate } from "@/components/sections/PsychotherapyTemplate";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { graph, breadcrumbNode } from "@/lib/schema";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Child Therapy",
   description:
     "Developmentally sensitive therapy for children and adolescents. Play therapy, art-based expression, and CBT adapted for young minds.",
+  alternates: { canonical: "/services/psychotherapy/children" },
+  openGraph: {
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
+    title: "Child Therapy",
+    description:
+      "Developmentally sensitive therapy for children and adolescents. Play therapy, art-based expression, and CBT adapted for young minds.",
+    url: `${site.url}/services/psychotherapy/children`,
+    type: "website",
+  },
 };
 
 export default function ChildrenPage() {
   return (
-    <PsychotherapyTemplate
+    <>
+      <JsonLd
+        data={graph(
+          breadcrumbNode([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+            { name: "Psychotherapy", path: "/services/psychotherapy" },
+            { name: "Children", path: "/services/psychotherapy/children" },
+          ])
+        )}
+      />
+      <PsychotherapyTemplate
       title="Supporting Young Minds to Thrive"
       subtitle="Children experience the world with big emotions and developing coping skills. When they struggle, whether with anxiety, behavioural changes, school stress, or family transitions, the right support can make a lasting difference."
       issuesTitle="Signs Your Child Might Benefit"
@@ -31,6 +54,7 @@ export default function ChildrenPage() {
         "Online sessions available for older children and teens",
         "50-minute sessions, with flexible scheduling",
       ]}
-    />
+      />
+    </>
   );
 }
