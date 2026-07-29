@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    return [
+      {
+        source: "/umt-proposal26",
+        destination: "/umt-proposal26.html",
+      },
+    ];
+  },
 };
 
 export default nextConfig;
