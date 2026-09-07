@@ -65,6 +65,8 @@ export default function ScreeningPage() {
             description:
               "Start with understanding. Our AI-powered screening tool provides a confidential, personalised assessment of your mental health, in under 10 minutes.",
             path: "/services/screening",
+            serviceType: "Mental health screening",
+            medical: false,
           })
         )}
       />

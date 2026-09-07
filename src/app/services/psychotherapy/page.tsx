@@ -72,6 +72,7 @@ export default function PsychotherapyPage() {
             description:
               "One-on-one and group therapy with licensed professionals. We offer specialised tracks for adults, children, couples, and families, online or face-to-face.",
             path: "/services/psychotherapy",
+            serviceType: "Psychotherapy",
           })
         )}
       />

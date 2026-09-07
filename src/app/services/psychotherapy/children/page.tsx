@@ -1,7 +1,7 @@
 import { PsychotherapyTemplate } from "@/components/sections/PsychotherapyTemplate";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { graph, breadcrumbNode } from "@/lib/schema";
+import { graph, breadcrumbNode, serviceNode } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -29,7 +29,15 @@ export default function ChildrenPage() {
             { name: "Services", path: "/services" },
             { name: "Psychotherapy", path: "/services/psychotherapy" },
             { name: "Children", path: "/services/psychotherapy/children" },
-          ])
+          ]),
+          serviceNode({
+            name: "Child Therapy",
+            description:
+              "Psychotherapy for children and adolescents using play therapy, art-based expression, and child-adapted cognitive-behavioural techniques.",
+            path: "/services/psychotherapy/children",
+            serviceType: "Psychotherapy",
+            audience: "Children and adolescents",
+          })
         )}
       />
       <PsychotherapyTemplate

@@ -12,7 +12,7 @@ import { BlobShape } from "@/components/decorative/BlobShape";
 import { blogPosts } from "@/content/blog";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { graph, blogPostingNode, breadcrumbNode } from "@/lib/schema";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, formatDate } from "@/lib/site";
 import type { Metadata } from "next";
 
 type Params = Promise<{ slug: string }>;
@@ -79,6 +79,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       description: post.excerpt,
       url,
       publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
       authors: [post.author],
     },
     twitter: {
@@ -106,6 +107,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             title: post.title,
             excerpt: post.excerpt,
             date: post.date,
+            updated: post.updated,
             category: post.category,
             author: post.author,
           }),
@@ -137,7 +139,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
           <div className="flex items-center gap-3 mb-4">
             <Tag variant="lavender">{post.category}</Tag>
-            <span className="text-xs text-night/60">{post.date}</span>
+            <span className="text-xs text-night/60">{formatDate(post.date)}</span>
           </div>
 
           <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night leading-tight">
@@ -196,7 +198,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                     title={r.title}
                     excerpt={r.excerpt}
                     category={r.category}
-                    date={r.date}
+                    date={formatDate(r.date)}
                     slug={r.slug}
                     art={r.art}
                   />

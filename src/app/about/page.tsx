@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Heart, Compass, FlaskConical, Globe, Eye } from "lucide-react";
+import { Heart, Compass, FlaskConical, Globe, Eye, Building2 } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
+import { CredentialBadge } from "@/components/ui/CredentialBadge";
 import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
@@ -189,6 +190,42 @@ export default function AboutPage() {
                   </p>
                 </div>
               ))}
+            </div>
+          </FadeInOnScroll>
+        </Container>
+      </section>
+
+      {/* Credentials */}
+      <section className="py-16 md:py-20 bg-white border-b border-night/8 relative overflow-hidden">
+        <Container className="relative z-10">
+          <FadeInOnScroll>
+            <div className="text-center mb-12">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
+                Credentials
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night">
+                Registered and Accountable
+              </h2>
+            </div>
+          </FadeInOnScroll>
+
+          <FadeInOnScroll>
+            <div className="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
+              <div className="flex items-start gap-4 rounded-card bg-white p-8 shadow-card">
+                <Building2
+                  className="w-6 h-6 text-coral shrink-0 mt-0.5"
+                  strokeWidth={1.75}
+                />
+                <div className="text-left">
+                  <p className="text-base font-semibold text-night">
+                    Registered with SSM
+                  </p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-night/60">
+                    {site.legalName}, company registration {site.registration}.
+                  </p>
+                </div>
+              </div>
+              <CredentialBadge variant="card" />
             </div>
           </FadeInOnScroll>
         </Container>

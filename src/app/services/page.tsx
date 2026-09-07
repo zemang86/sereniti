@@ -41,18 +41,24 @@ export default function ServicesPage() {
             description:
               "Start with understanding. Our AI-powered screening tool provides a confidential, personalised assessment of your mental health, in under 10 minutes.",
             path: "/services/screening",
+            serviceType: "Mental health screening",
+            medical: false,
           }),
           serviceNode({
             name: "Psychotherapy",
             description:
               "One-on-one and group therapy with licensed professionals. We offer specialised tracks for adults, children, couples, and families, online or face-to-face.",
             path: "/services/psychotherapy",
+            serviceType: "Psychotherapy",
           }),
           serviceNode({
             name: "Corporate Wellness Programmes",
             description:
               "End-to-end employee wellness programmes designed for Malaysian workplaces. From screening and workshops to embedded therapy sessions and Damaura access.",
             path: "/services/corporate",
+            serviceType: "Corporate wellness programme",
+            audience: "Employers and organisations",
+            medical: false,
           })
         )}
       />

@@ -6,9 +6,12 @@ import {
   Smartphone,
   Briefcase,
   CheckCircle,
+  type LucideIcon,
 } from "lucide-react";
+import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
+import { CredentialBadge } from "@/components/ui/CredentialBadge";
 import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
@@ -46,7 +49,12 @@ const stats = [
   { value: "4:1", label: "Average ROI on wellness investment" },
 ];
 
-const offerings = [
+const offerings: {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  badge?: string;
+}[] = [
   {
     icon: Brain,
     title: "Employee Mental Health Screening",
@@ -61,6 +69,7 @@ const offerings = [
     icon: Presentation,
     title: "Workshops & Training",
     desc: "Interactive sessions for teams and leadership on stress management, emotional resilience, burnout prevention, mental health first aid, and building psychologically safe workplaces.",
+    badge: site.hrdCorp.credential,
   },
   {
     icon: Smartphone,
@@ -107,6 +116,9 @@ export default function CorporatePage() {
             description:
               "End-to-end employee wellness programmes designed for Malaysian workplaces. From screening and workshops to embedded therapy sessions and Damaura access.",
             path: "/services/corporate",
+            serviceType: "Corporate wellness programme",
+            audience: "Employers and organisations",
+            medical: false,
           })
         )}
       />
@@ -140,6 +152,11 @@ export default function CorporatePage() {
               <Button href="/about/contact?type=corporate" size="lg" showArrow>
                 Request a Proposal
               </Button>
+            </div>
+          </FadeInOnScroll>
+          <FadeInOnScroll delay={0.4}>
+            <div className="mt-8 flex justify-center">
+              <CredentialBadge variant="strip" />
             </div>
           </FadeInOnScroll>
         </Container>
@@ -228,6 +245,19 @@ export default function CorporatePage() {
                   <p className="text-night/60 text-sm leading-relaxed">
                     {o.desc}
                   </p>
+                  {o.badge && (
+                    <p className="mt-4 flex items-center gap-2.5 text-xs font-medium text-night/70">
+                      <Image
+                        src={site.hrdCorp.logo}
+                        alt=""
+                        aria-hidden="true"
+                        width={96}
+                        height={96}
+                        className="w-8 h-8 shrink-0"
+                      />
+                      {o.badge}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>

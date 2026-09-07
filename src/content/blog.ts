@@ -5,7 +5,10 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   category: string;
+  /** ISO 8601 (YYYY-MM-DD). Consumed directly by JSON-LD and Open Graph. */
   date: string;
+  /** ISO 8601. Set when a post is materially revised; drives dateModified. */
+  updated?: string;
   author: string;
   /** Metaphorical artwork motif; falls back to a slug-derived one if omitted. */
   art?: Motif;
@@ -18,7 +21,7 @@ export const blogPosts: BlogPost[] = [
     title: "How Much Does Therapy Cost in Malaysia?",
     excerpt: "Therapy in Malaysia varies widely, from free public and NGO options to private sessions that can range from roughly RM100 to RM400 or more.",
     category: "Tips & Resources",
-    date: "April 24, 2026",
+    date: "2026-04-24",
     author: "Serenitilabs Team",
     art: "path",
     body: [
@@ -67,7 +70,7 @@ export const blogPosts: BlogPost[] = [
     title: "How Do I Know If I Need Therapy? 8 Signs to Look For",
     excerpt: "You do not need to be in crisis to benefit from therapy; ongoing low mood, anxiety, sleep changes, or feeling stuck are all valid reasons to reach out.",
     category: "Mental Health Education",
-    date: "April 21, 2026",
+    date: "2026-04-21",
     author: "Sarah Aleesa Aguinaldo",
     art: "stars",
     body: [
@@ -113,7 +116,7 @@ export const blogPosts: BlogPost[] = [
     title: "Online Therapy vs In-Person Therapy: Which Is Right for You?",
     excerpt: "Both online and in-person therapy work well. The right choice depends on your needs, comfort, schedule, and where you are in Malaysia.",
     category: "Mental Health Education",
-    date: "April 18, 2026",
+    date: "2026-04-18",
     author: "Serenitilabs Team",
     art: "orbit",
     body: [
@@ -158,7 +161,7 @@ export const blogPosts: BlogPost[] = [
     title: "Understanding Anxiety: Signs, Causes, and When to Seek Help",
     excerpt: "Anxiety is a normal emotion. It becomes a concern when it is persistent, excessive, and starts to interfere with your daily life.",
     category: "Mental Health Education",
-    date: "April 16, 2026",
+    date: "2026-04-16",
     author: "Ummu Nazra Nadzam",
     art: "waves",
     body: [
@@ -213,7 +216,7 @@ export const blogPosts: BlogPost[] = [
     title: "How to Support a Loved One Who Is Struggling With Their Mental Health",
     excerpt: "You do not need the perfect answers. Showing up, listening without judgment, and gently helping them reach support matters most.",
     category: "Tips & Resources",
-    date: "April 14, 2026",
+    date: "2026-04-14",
     author: "Sarah Aleesa Aguinaldo",
     art: "bloom",
     body: [
@@ -261,7 +264,7 @@ export const blogPosts: BlogPost[] = [
     title: "Recognising and Recovering From Burnout",
     excerpt: "Burnout is chronic exhaustion from prolonged stress. Recovery is possible with rest, boundaries, and the right support.",
     category: "Mental Health Education",
-    date: "April 12, 2026",
+    date: "2026-04-12",
     author: "Ummu Nazra Nadzam",
     art: "shelter",
     body: [
@@ -308,7 +311,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "A warm, practical guide that demystifies the first appointment. Addresses common fears and sets realistic expectations.",
     category: "Mental Health Education",
-    date: "April 10, 2026",
+    date: "2026-04-10",
     author: "Sarah Aleesa Aguinaldo",
     art: "sunrise",
     body: [
@@ -325,7 +328,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Discusses the limitations of traditional Employee Assistance Programmes and introduces a more integrated model for workplace wellness.",
     category: "Workplace Wellness",
-    date: "April 7, 2026",
+    date: "2026-04-07",
     author: "Serenitilabs Team",
     art: "shelter",
     body: [
@@ -342,7 +345,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Practical signs of team burnout and actionable next steps for managers and HR leaders.",
     category: "Workplace Wellness",
-    date: "April 3, 2026",
+    date: "2026-04-03",
     author: "Serenitilabs Team",
     art: "waves",
     body: [
@@ -361,7 +364,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Introduces Damaura's role in modern mental health care, a thought leadership piece that educates while building brand awareness.",
     category: "Mental Health Education",
-    date: "March 28, 2026",
+    date: "2026-03-28",
     author: "Serenitilabs Team",
     art: "orbit",
     body: [
@@ -379,7 +382,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Practical, warm guide for parents who may be considering child therapy. Shareable and actionable.",
     category: "Tips & Resources",
-    date: "March 24, 2026",
+    date: "2026-03-24",
     author: "Sarah Aleesa Aguinaldo",
     art: "growth",
     body: [

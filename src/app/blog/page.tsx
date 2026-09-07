@@ -7,7 +7,7 @@ import { BlobShape } from "@/components/decorative/BlobShape";
 import { blogPosts } from "@/content/blog";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { graph, breadcrumbNode } from "@/lib/schema";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, formatDate } from "@/lib/site";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -70,7 +70,7 @@ export default function BlogPage() {
                 title={post.title}
                 excerpt={post.excerpt}
                 category={post.category}
-                date={post.date}
+                date={formatDate(post.date)}
                 slug={post.slug}
                 art={post.art}
               />

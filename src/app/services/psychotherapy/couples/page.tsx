@@ -1,7 +1,7 @@
 import { PsychotherapyTemplate } from "@/components/sections/PsychotherapyTemplate";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { graph, breadcrumbNode } from "@/lib/schema";
+import { graph, breadcrumbNode, serviceNode } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -29,7 +29,15 @@ export default function CouplesPage() {
             { name: "Services", path: "/services" },
             { name: "Psychotherapy", path: "/services/psychotherapy" },
             { name: "Couples", path: "/services/psychotherapy/couples" },
-          ])
+          ]),
+          serviceNode({
+            name: "Couples Therapy",
+            description:
+              "Couples therapy in 90-minute sessions, giving both partners space to be heard. Communication, trust, conflict, and connection.",
+            path: "/services/psychotherapy/couples",
+            serviceType: "Psychotherapy",
+            audience: "Couples",
+          })
         )}
       />
       <PsychotherapyTemplate

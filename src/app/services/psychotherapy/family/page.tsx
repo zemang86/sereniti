@@ -1,7 +1,7 @@
 import { PsychotherapyTemplate } from "@/components/sections/PsychotherapyTemplate";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { graph, breadcrumbNode } from "@/lib/schema";
+import { graph, breadcrumbNode, serviceNode } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -29,7 +29,15 @@ export default function FamilyPage() {
             { name: "Services", path: "/services" },
             { name: "Psychotherapy", path: "/services/psychotherapy" },
             { name: "Family", path: "/services/psychotherapy/family" },
-          ])
+          ]),
+          serviceNode({
+            name: "Family Therapy",
+            description:
+              "Family therapy in 60-90 minute sessions, adapted to who needs to be in the room. Communication, conflict, and rebuilding trust.",
+            path: "/services/psychotherapy/family",
+            serviceType: "Psychotherapy",
+            audience: "Families",
+          })
         )}
       />
       <PsychotherapyTemplate

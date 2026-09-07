@@ -33,11 +33,22 @@ const aiAgents = [
   "Meta-ExternalAgent",
 ];
 
+/**
+ * Private/client-specific paths. Must be repeated on every agent group: a
+ * per-agent `allow: "/"` group otherwise overrides the wildcard group's
+ * disallow for that agent.
+ */
+const disallowed = [
+  "/api/",
+  "/umt-proposal26",
+  "/umt-proposal26.html",
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/api/"] },
-      ...aiAgents.map((userAgent) => ({ userAgent, allow: "/" })),
+      { userAgent: "*", allow: "/", disallow: disallowed },
+      ...aiAgents.map((userAgent) => ({ userAgent, allow: "/", disallow: disallowed })),
     ],
     sitemap: `${site.url}/sitemap.xml`,
     host: site.url,

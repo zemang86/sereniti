@@ -9,6 +9,7 @@
  */
 
 import { site, socialLinks, absoluteUrl } from "@/lib/site";
+import { teamMembers } from "@/content/team";
 
 export const ORG_ID = `${site.url}/#organization`;
 export const WEBSITE_ID = `${site.url}/#website`;
@@ -55,6 +56,21 @@ export function organizationNode(): Node {
       propertyID: "SSM Registration",
       value: site.registration,
     },
+    // Company-level training accreditation. Deliberately NOT a second `identifier`:
+    // the certificate serial is the same number as the SSM registration above.
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      name: site.hrdCorp.credential,
+      credentialCategory: "Training Provider Registration",
+      recognizedBy: {
+        "@type": "Organization",
+        name: site.hrdCorp.issuer,
+        alternateName: site.hrdCorp.issuerShort,
+      },
+      validIn: { "@type": "Country", name: site.address.countryName },
+      validFrom: site.hrdCorp.approved,
+      expires: site.hrdCorp.expires,
+    },
     ...(socialLinks.length ? { sameAs: socialLinks } : {}),
   };
 }
@@ -99,6 +115,8 @@ export function personNode(member: {
   role: string;
   bio: string;
   qualifications?: string[];
+  specialties?: string[];
+  languages?: string[];
   photo?: string;
 }): Node {
   return {
@@ -110,6 +128,8 @@ export function personNode(member: {
     url: absoluteUrl(`/team/${member.slug}`),
     ...(member.photo ? { image: absoluteUrl(member.photo) } : {}),
     worksFor: { "@id": ORG_ID },
+    ...(member.specialties?.length ? { knowsAbout: member.specialties } : {}),
+    ...(member.languages?.length ? { knowsLanguage: member.languages } : {}),
     ...(member.qualifications && member.qualifications.length
       ? {
           hasCredential: member.qualifications.map((q) => ({
@@ -121,20 +141,69 @@ export function personNode(member: {
   };
 }
 
-/** Service node (a clinical / productized offering). */
+/**
+ * Service node (a clinical / productized offering).
+ *
+ * Typed as both `Service` and `MedicalTherapy`: `provider` and `areaServed` are
+ * Service properties and are NOT in the domain of `MedicalTherapy`
+ * (MedicalProcedure -> MedicalEntity), so a bare MedicalTherapy node has both
+ * of them ignored. Pass `medical: false` for offerings that are not a therapy
+ * (screening, corporate programmes).
+ */
 export function serviceNode(svc: {
   name: string;
   description: string;
   path: string;
+  serviceType?: string;
+  audience?: string;
+  medical?: boolean;
 }): Node {
   return {
-    "@type": "MedicalTherapy",
+    "@type": svc.medical === false ? "Service" : ["Service", "MedicalTherapy"],
+    "@id": absoluteUrl(`${svc.path}#service`),
     name: svc.name,
     description: svc.description,
     url: absoluteUrl(svc.path),
     provider: { "@id": ORG_ID },
     areaServed: { "@type": "Country", name: site.address.countryName },
+    ...(svc.serviceType ? { serviceType: svc.serviceType } : {}),
+    ...(svc.audience
+      ? { audience: { "@type": "PeopleAudience", audienceType: svc.audience } }
+      : {}),
+    availableChannel: [
+      {
+        "@type": "ServiceChannel",
+        name: "Online",
+        serviceUrl: absoluteUrl("/about/contact"),
+      },
+      {
+        "@type": "ServiceChannel",
+        name: "In person",
+        serviceLocation: {
+          "@type": "Place",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: site.address.locality,
+            addressRegion: site.address.region,
+            addressCountry: site.address.country,
+          },
+        },
+      },
+    ],
   };
+}
+
+/**
+ * Resolve an article byline to a graph reference. Named clinicians link to their
+ * existing Person node so article authority attaches to a credentialed human;
+ * the house byline resolves to the organisation.
+ */
+function authorRef(author?: string): Node {
+  if (!author || author === `${site.name} Team`) return { "@id": ORG_ID };
+  const member = teamMembers.find((m) => m.name === author);
+  return member
+    ? { "@id": absoluteUrl(`/team/${member.slug}#person`) }
+    : { "@type": "Person", name: author };
 }
 
 /** BlogPosting node for an article. */
@@ -143,6 +212,7 @@ export function blogPostingNode(post: {
   title: string;
   excerpt: string;
   date: string;
+  updated?: string;
   category?: string;
   author?: string;
 }): Node {
@@ -152,12 +222,10 @@ export function blogPostingNode(post: {
     headline: post.title,
     description: post.excerpt,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     ...(post.category ? { articleSection: post.category } : {}),
     inLanguage: "en-MY",
-    author: post.author
-      ? { "@type": "Person", name: post.author }
-      : { "@id": ORG_ID },
+    author: authorRef(post.author),
     publisher: { "@id": ORG_ID },
     isPartOf: { "@id": WEBSITE_ID },
     mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),

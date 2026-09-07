@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone } from "lucide-react";
 import { Container } from "./Container";
+import { site } from "@/lib/site";
+import { CrisisNotice } from "./CrisisNotice";
 
 const serviceLinks = [
   { label: "Digital Screening", href: "/services/screening" },
@@ -20,6 +22,8 @@ export function Footer() {
   return (
     <footer className="bg-night text-dawn/80">
       <Container className="py-16 md:py-20">
+        <CrisisNotice />
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
@@ -120,17 +124,12 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-14 pt-6 border-t border-dawn/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-dawn/40">
-          <p>
-            &copy; 2026 Serenitilabs Sdn. Bhd. Reg. No. 202601000377
-            (1662475-P). All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <Link href="#" className="hover:text-dawn/60 transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-dawn/60 transition-colors">
-              Terms of Service
-            </Link>
+          <div className="text-center md:text-left">
+            <p>
+              &copy; 2026 {site.legalName} Reg. No. {site.registration}. All
+              rights reserved.
+            </p>
+            <p className="mt-1">{site.hrdCorp.credential}</p>
           </div>
         </div>
       </Container>

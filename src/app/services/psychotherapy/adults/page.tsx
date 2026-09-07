@@ -1,7 +1,7 @@
 import { PsychotherapyTemplate } from "@/components/sections/PsychotherapyTemplate";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { graph, breadcrumbNode } from "@/lib/schema";
+import { graph, breadcrumbNode, serviceNode } from "@/lib/schema";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -29,7 +29,15 @@ export default function AdultsPage() {
             { name: "Services", path: "/services" },
             { name: "Psychotherapy", path: "/services/psychotherapy" },
             { name: "Adults", path: "/services/psychotherapy/adults" },
-          ])
+          ]),
+          serviceNode({
+            name: "Adult Therapy",
+            description:
+              "Individual psychotherapy for adults: anxiety, depression, burnout, life transitions, and more. Online and in-person sessions in Kuala Lumpur.",
+            path: "/services/psychotherapy/adults",
+            serviceType: "Psychotherapy",
+            audience: "Adults",
+          })
         )}
       />
       <PsychotherapyTemplate

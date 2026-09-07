@@ -14,6 +14,7 @@ import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
 import { FAQ } from "@/components/sections/FAQ";
+import { CredentialBadge } from "@/components/ui/CredentialBadge";
 import { teamMembers } from "@/content/team";
 
 /* ─── Hero ─── */
@@ -83,6 +84,11 @@ function HeroSection() {
                 >
                   Explore Corporate Packages
                 </Button>
+              </div>
+            </FadeInOnScroll>
+            <FadeInOnScroll delay={0.7}>
+              <div className="mt-8">
+                <CredentialBadge variant="strip" showCertLink={false} />
               </div>
             </FadeInOnScroll>
           </div>
@@ -169,7 +175,7 @@ function ServicesSection() {
 function TrustSection() {
   const stats = [
     { value: "500+", label: "Sessions Delivered" },
-    { value: "4", label: "Licensed Therapists" },
+    { value: String(teamMembers.length), label: "Licensed Therapists" },
     { value: "98%", label: "Client Satisfaction" },
   ];
 
@@ -376,76 +382,6 @@ function TeamTeaser() {
   );
 }
 
-/* ─── Testimonials ─── */
-function Testimonials() {
-  const quotes = [
-    {
-      text: "Serenitilabs made seeking help feel natural and safe. The therapists here genuinely listen.",
-      author: "Client",
-      role: "Individual Therapy",
-    },
-    {
-      text: "Our team's engagement improved measurably after partnering with Serenitilabs for our wellness programme.",
-      author: "HR Director",
-      role: "Corporate Client",
-    },
-    {
-      text: "Damaura helped me stay mindful between sessions. It feels like someone always has your back.",
-      author: "Client",
-      role: "Damaura User",
-    },
-  ];
-
-  return (
-    <section className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(135deg, #F5D3B8 0%, #E8B8A0 100%)" }}>
-      <ParallaxLayer speed={0.2} className="absolute inset-0 pointer-events-none">
-        <BlobShape
-          variant={0}
-          color="#1E1A93"
-          size={400}
-          opacity={0.06}
-          blur={50}
-          className="bottom-[10%] left-[5%]"
-        />
-        <BlobShape
-          variant={2}
-          color="#C9B8DB"
-          size={300}
-          opacity={0.1}
-          blur={40}
-          className="top-[5%] right-[10%]"
-        />
-      </ParallaxLayer>
-
-      <Container className="relative z-10">
-        <FadeInOnScroll>
-          <SectionHeader
-            title="What People Are Saying"
-            subtitle="Placeholder testimonials. Real stories coming soon."
-          />
-        </FadeInOnScroll>
-
-        <StaggerChildren className="grid md:grid-cols-3 gap-6">
-          {quotes.map((q, i) => (
-            <div
-              key={i}
-              className="bg-white/80 backdrop-blur-sm rounded-[24px] p-8 shadow-card"
-            >
-              <p className="font-serif text-lg text-night italic leading-relaxed">
-                &ldquo;{q.text}&rdquo;
-              </p>
-              <div className="mt-6">
-                <p className="text-sm font-semibold text-night">{q.author}</p>
-                <p className="text-xs text-night/50">{q.role}</p>
-              </div>
-            </div>
-          ))}
-        </StaggerChildren>
-      </Container>
-    </section>
-  );
-}
-
 /* ─── Final CTA ─── */
 function FinalCTA() {
   return (
@@ -501,7 +437,6 @@ export default function HomePage() {
       <TrustSection />
       <DamauraSpolight />
       <TeamTeaser />
-      <Testimonials />
       <FAQ />
       <FinalCTA />
     </>
