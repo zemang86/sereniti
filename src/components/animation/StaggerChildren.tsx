@@ -41,7 +41,9 @@ export function StaggerChildren({
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      // "some", not a ratio: a ratio can never be met by an element taller
+      // than 1/ratio viewports (long articles and the blog grid stayed blank).
+      viewport={{ once: true, amount: "some", margin: "0px 0px -80px 0px" }}
       custom={staggerDelay}
       className={className}
     >

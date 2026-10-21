@@ -1,6 +1,5 @@
 import { Container } from "@/components/layout/Container";
 import { BlogCard } from "@/components/cards/BlogCard";
-import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
@@ -26,6 +25,9 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  // Newest first; the lead post is featured across two columns.
+  const posts = [...blogPosts].sort((a, b) => b.date.localeCompare(a.date));
+
   return (
     <>
       <JsonLd
@@ -38,7 +40,7 @@ export default function BlogPage() {
       />
       {/* Hero */}
       <section
-        className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
+        className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden"
         style={{ background: "var(--gradient-sunrise)" }}
       >
         <ParallaxLayer speed={0.2} className="absolute inset-0 pointer-events-none">
@@ -46,27 +48,24 @@ export default function BlogPage() {
         </ParallaxLayer>
 
         <Container className="relative z-10 text-center max-w-3xl mx-auto">
-          <FadeInOnScroll>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-night leading-tight">
-              Insights & Resources
-            </h1>
-          </FadeInOnScroll>
-          <FadeInOnScroll delay={0.2}>
-            <p className="mt-6 text-lg text-night/60 leading-relaxed">
-              Practical guidance, expert perspectives, and honest conversations
-              about mental health, for individuals and organisations.
-            </p>
-          </FadeInOnScroll>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-night leading-tight">
+            Insights & Resources
+          </h1>
+          <p className="mt-6 text-lg text-night/70 leading-relaxed">
+            Practical guidance, expert perspectives, and honest conversations
+            about mental health, for individuals and organisations.
+          </p>
         </Container>
       </section>
 
       {/* Articles Grid */}
       <section className="py-20 md:py-28 bg-dawn">
         <Container>
-          <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post) => (
+          <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:[&>*:first-child]:col-span-2">
+            {posts.map((post, i) => (
               <BlogCard
                 key={post.slug}
+                featured={i === 0}
                 title={post.title}
                 excerpt={post.excerpt}
                 category={post.category}

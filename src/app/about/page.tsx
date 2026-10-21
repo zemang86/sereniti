@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Heart, Compass, FlaskConical, Globe, Eye, Building2 } from "lucide-react";
+import { Heart, Compass, FlaskConical, Globe, Eye, Building2, HeartHandshake, MessageCircleHeart } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { CredentialBadge } from "@/components/ui/CredentialBadge";
@@ -14,13 +14,13 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Serenitilabs is a Malaysian mental health company delivering expert-led, evidence-based care enhanced by AI, making support accessible across Southeast Asia.",
+    "Serenitilabs is an AI-native mental health provider in Malaysia: licensed clinical psychologists deliver the care, and our own AI companion, Damaura, supports people between sessions.",
   alternates: { canonical: "/about" },
   openGraph: {
       images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
     title: "About Us",
     description:
-      "Serenitilabs is a Malaysian mental health company delivering expert-led, evidence-based care enhanced by AI, making support accessible across Southeast Asia.",
+      "Serenitilabs is an AI-native mental health provider in Malaysia: licensed clinical psychologists deliver the care, and our own AI companion, Damaura, supports people between sessions.",
     url: `${site.url}/about`,
     type: "website",
   },
@@ -54,6 +54,26 @@ const values = [
   },
 ];
 
+/* What makes Serenitilabs "full stack": it owns the care, not just the software.
+   Keep every line true today; the closing line is framed as an aim on purpose. */
+const stack = [
+  {
+    icon: HeartHandshake,
+    title: "Licensed Clinicians",
+    desc: "Registered clinical psychologists lead every session and make every clinical decision, online and in person, in English and Bahasa Malaysia.",
+  },
+  {
+    icon: MessageCircleHeart,
+    title: "Our Own AI",
+    desc: "Damaura, built in-house, gives people a place to check in, practise and talk things through in the days between sessions.",
+  },
+  {
+    icon: Building2,
+    title: "One Partner for Organisations",
+    desc: `Therapy, workshops from an ${site.hrdCorp.credential}, and Damaura for every employee, from one team instead of three vendors.`,
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -67,7 +87,7 @@ export default function AboutPage() {
       />
       {/* Hero */}
       <section
-        className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
+        className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden"
         style={{ background: "var(--gradient-sunrise)" }}
       >
         <ParallaxLayer speed={0.2} className="absolute inset-0 pointer-events-none">
@@ -75,19 +95,15 @@ export default function AboutPage() {
         </ParallaxLayer>
 
         <Container className="relative z-10 text-center max-w-3xl mx-auto">
-          <FadeInOnScroll>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-night leading-tight">
-              Redefining Mental Health Care in Southeast Asia
-            </h1>
-          </FadeInOnScroll>
-          <FadeInOnScroll delay={0.2}>
-            <p className="mt-6 text-lg text-night/60 leading-relaxed">
-              Serenitilabs was born from a simple belief: that mental health
-              support should be accessible, personal, and empowered by the best
-              of what technology can offer, without ever replacing the human
-              connection at its core.
-            </p>
-          </FadeInOnScroll>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-night leading-tight">
+            Redefining Mental Health Care in Southeast Asia
+          </h1>
+          <p className="mt-6 text-lg text-night/70 leading-relaxed">
+            Serenitilabs was born from a simple belief: that mental health
+            support should be accessible, personal, and empowered by the best
+            of what technology can offer, without ever replacing the human
+            connection at its core.
+          </p>
         </Container>
       </section>
 
@@ -95,9 +111,9 @@ export default function AboutPage() {
       <section className="py-20 md:py-28 bg-dawn relative overflow-hidden">
         <Container className="relative z-10 max-w-4xl mx-auto">
           <StaggerChildren className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-card shadow-card p-8 md:p-10 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1">
+            <div className="h-full bg-white rounded-card shadow-card p-8 md:p-10">
               <FadeInOnScroll>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral-ink mb-3">
                   Vision
                 </p>
                 <p className="font-serif text-xl text-night leading-relaxed">
@@ -106,9 +122,9 @@ export default function AboutPage() {
                 </p>
               </FadeInOnScroll>
             </div>
-            <div className="bg-white rounded-card shadow-card p-8 md:p-10 transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1">
+            <div className="h-full bg-white rounded-card shadow-card p-8 md:p-10">
               <FadeInOnScroll delay={0.1}>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral-ink mb-3">
                   Mission
                 </p>
                 <p className="font-serif text-xl text-night leading-relaxed">
@@ -130,13 +146,13 @@ export default function AboutPage() {
 
         <Container className="relative z-10 max-w-3xl mx-auto">
           <FadeInOnScroll>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral-ink mb-3">
               Our Story
             </p>
             <h2 className="font-serif text-3xl md:text-4xl text-night leading-tight mb-8">
               The Human + AI Approach
             </h2>
-            <div className="space-y-5 text-night/60 leading-relaxed">
+            <div className="space-y-5 text-night/70 leading-relaxed">
               <p>
                 We started with a question: what if technology could make mental
                 health care better, not by replacing therapists, but by extending
@@ -144,10 +160,10 @@ export default function AboutPage() {
               </p>
               <p>
                 That&apos;s why we built Damaura, an AI companion that supports
-                clients between sessions with mood tracking, sleep insights,
-                guided reflections, and personalised recommendations. It gives
-                therapists richer context. It gives clients continuous support.
-                And it gives organisations measurable wellness data.
+                people between sessions with one-tap mood check-ins, small daily
+                practices, a journal, and a chat in English, BM or Manglish. It
+                gives clients continuous support. And it lets organisations offer
+                that support to everyone on their team.
               </p>
               <p>
                 But Damaura is a tool, not a therapist. At the heart of
@@ -160,53 +176,90 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      {/* How We're Built */}
+      <section className="py-20 md:py-28 bg-indigo relative overflow-hidden">
+        <Container className="relative z-10">
+          <FadeInOnScroll>
+            <div className="max-w-3xl mx-auto text-center mb-14">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sunrise mb-3">
+                How We&apos;re Built
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-dawn leading-tight">
+                We Don&apos;t Sell AI to Mental Health Providers. We Are One.
+              </h2>
+              <p className="mt-6 text-lg text-dawn/60 leading-relaxed">
+                Most mental health technology is built to be sold to clinics and
+                HR teams. We took the other path. Serenitilabs employs the
+                clinicians, delivers the care and the corporate programmes
+                itself, and builds its own AI to support both.
+              </p>
+            </div>
+          </FadeInOnScroll>
+
+          <StaggerChildren className="grid md:grid-cols-3 gap-6">
+            {stack.map((item) => (
+              <div
+                key={item.title}
+                className="h-full rounded-card border border-dawn/10 bg-white/5 p-8"
+              >
+                <item.icon className="w-8 h-8 text-coral mb-5" strokeWidth={1.75} />
+                <h3 className="font-sans text-lg font-semibold text-dawn mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-dawn/60 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </StaggerChildren>
+
+          <FadeInOnScroll>
+            <p className="mt-14 text-center font-serif text-xl md:text-2xl text-dawn/90 max-w-2xl mx-auto leading-relaxed">
+              People do the care. AI does the work around it. The aim is more
+              people supported, with no drop in the standard of care.
+            </p>
+          </FadeInOnScroll>
+        </Container>
+      </section>
+
       {/* Values */}
       <section className="py-20 md:py-28 bg-dawn relative overflow-hidden">
         <Container className="relative z-10">
           <FadeInOnScroll>
-            <div className="text-center mb-16">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
-                Our Values
-              </p>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night">
-                What We Stand For
-              </h2>
-            </div>
+            <h2 className="text-center mb-12 md:mb-16 font-serif text-3xl md:text-4xl lg:text-5xl text-night">
+              What We Stand For
+            </h2>
           </FadeInOnScroll>
 
           <FadeInOnScroll>
-            <div className="flex flex-wrap justify-center gap-6">
+            <ul className="max-w-3xl mx-auto bg-white rounded-card shadow-card divide-y divide-night/10">
               {values.map((v) => (
-                <div
-                  key={v.title}
-                  className="w-full sm:w-[calc(50%_-_0.75rem)] lg:w-[calc(33.333%_-_1rem)] bg-white rounded-card shadow-card p-8 hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1"
-                >
-                  <v.icon className="w-8 h-8 text-coral mb-4" />
-                  <h3 className="font-sans text-lg font-semibold text-night mb-2">
-                    {v.title}
-                  </h3>
-                  <p className="text-night/60 text-sm leading-relaxed">
-                    {v.desc}
-                  </p>
-                </div>
+                <li key={v.title} className="flex gap-5 p-6 md:p-8">
+                  <v.icon
+                    className="w-6 h-6 text-coral shrink-0 mt-1"
+                    strokeWidth={1.75}
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <h3 className="font-sans text-lg font-semibold text-night">
+                      {v.title}
+                    </h3>
+                    <p className="mt-1.5 text-night/70 leading-relaxed">
+                      {v.desc}
+                    </p>
+                  </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </FadeInOnScroll>
         </Container>
       </section>
 
       {/* Credentials */}
-      <section className="py-16 md:py-20 bg-white border-b border-night/8 relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-white relative overflow-hidden">
         <Container className="relative z-10">
           <FadeInOnScroll>
-            <div className="text-center mb-12">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
-                Credentials
-              </p>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night">
-                Registered and Accountable
-              </h2>
-            </div>
+            <h2 className="text-center mb-12 font-serif text-3xl md:text-4xl lg:text-5xl text-night">
+              Registered and Accountable
+            </h2>
           </FadeInOnScroll>
 
           <FadeInOnScroll>
@@ -220,7 +273,7 @@ export default function AboutPage() {
                   <p className="text-base font-semibold text-night">
                     Registered with SSM
                   </p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-night/60">
+                  <p className="mt-1.5 text-sm leading-relaxed text-night/70">
                     {site.legalName}, company registration {site.registration}.
                   </p>
                 </div>
@@ -232,20 +285,17 @@ export default function AboutPage() {
       </section>
 
       {/* Closing CTA */}
-      <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      <section className="py-20 md:py-28 bg-dawn relative overflow-hidden">
         <Container className="relative z-10 text-center max-w-2xl mx-auto">
           <FadeInOnScroll>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
-              Let&apos;s Talk
-            </p>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night leading-tight">
-              Care That Starts With a Conversation
+              Care That Starts with a Conversation
             </h2>
-            <p className="mt-4 text-lg text-night/60 leading-relaxed">
+            <p className="mt-4 text-lg text-night/70 leading-relaxed">
               Whether you&apos;re taking your first step or looking for the right
               team to walk alongside you, we&apos;re here to listen.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 sm:gap-4">
               <Button href="/about/contact" size="lg" showArrow>
                 Get in Touch
               </Button>

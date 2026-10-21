@@ -36,7 +36,7 @@ export const teamMembers: TeamMember[] = [
       "Certified Couple Therapist",
     ],
     languages: ["English", "Bahasa Malaysia"],
-    photo: "/images/team/sarah-aleesa-aguinaldo.jpg",
+    photo: "/images/team/sarah-aleesa-aguinaldo-2026.jpg",
     isLead: true,
   },
   {
@@ -59,5 +59,45 @@ export const teamMembers: TeamMember[] = [
     ],
     languages: ["English", "Bahasa Malaysia"],
     photo: "/images/team/ummu-nazra-nadzam.jpg",
+  },
+];
+
+/**
+ * Company leadership, shown on /team as text only (no photos, by request).
+ * Kept separate from `teamMembers`: that list is the clinicians, and it drives profile
+ * pages, the sitemap, Person JSON-LD and the homepage "Licensed Therapists" count.
+ * Copy follows the "People Behind the Purpose" post on instagram.com/serenitilabs.my.
+ */
+export interface Leader {
+  name: string;
+  role: string;
+  summary: string;
+  focus: string[];
+  /** Slug of the matching clinician profile, when there is one. */
+  profileSlug?: string;
+}
+
+export const leadership: Leader[] = [
+  {
+    name: "Fariz",
+    role: "Founder & Chief Executive Officer",
+    summary:
+      "Leading with purpose to create meaningful solutions for mental health across individuals, workplaces and communities.",
+    focus: ["Partnerships & Collaboration", "Strategic Direction & Growth", "Impact-Driven Mental Health Solutions"],
+  },
+  {
+    name: "Sarah Aleesa Aguinaldo",
+    role: "Co-Founder & Clinical Director",
+    summary:
+      "A registered clinical psychologist advancing mental health and wellbeing through evidence-based practice, training and community impact.",
+    focus: ["Clinical Services & Psychological Wellbeing", "Training & Capacity Building", "Research & Strategic Collaboration"],
+    profileSlug: "sarah-aleesa-aguinaldo",
+  },
+  {
+    name: "Hazman",
+    role: "Chief Technology Officer",
+    summary:
+      "Driving innovation through technology to make mental health support more accessible, engaging and impactful.",
+    focus: ["Product Development", "Digital Solutions", "Technology & Innovation"],
   },
 ];

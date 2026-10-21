@@ -15,11 +15,11 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-night text-white hover:bg-coral shadow-[0_4px_14px_rgba(28,28,30,0.18)] hover:shadow-[0_6px_20px_rgba(224,122,75,0.35)]",
+    "bg-night text-white hover:bg-coral-ink shadow-[0_4px_14px_rgba(28,28,30,0.18)] hover:shadow-[0_6px_20px_rgba(163,74,38,0.28)]",
   secondary:
     "bg-white text-night shadow-card hover:shadow-card-hover",
   ghost:
-    "bg-transparent text-night border border-night/20 hover:border-coral hover:text-coral",
+    "bg-transparent text-night border border-night/40 hover:border-coral-ink hover:text-coral-ink",
 };
 
 const sizes = {

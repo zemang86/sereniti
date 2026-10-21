@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import {
-  Brain,
   Users,
   Presentation,
   Smartphone,
@@ -23,13 +22,13 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Corporate Wellness Programmes",
   description:
-    "Serenitilabs delivers corporate wellness programmes for Malaysian workplaces: employee screening, on-site and online therapy, workshops, and Damaura for teams.",
+    "Serenitilabs delivers corporate wellness programmes for Malaysian workplaces: on-site and online therapy, workshops, leadership briefings, and Damaura for teams.",
   alternates: { canonical: "/services/corporate" },
   openGraph: {
       images: [{ url: "/opengraph-image.png", width: 1200, height: 630, alt: "Serenitilabs" }],
     title: "Corporate Wellness Programmes",
     description:
-      "Serenitilabs delivers corporate wellness programmes for Malaysian workplaces: employee screening, on-site and online therapy, workshops, and Damaura for teams.",
+      "Serenitilabs delivers corporate wellness programmes for Malaysian workplaces: on-site and online therapy, workshops, leadership briefings, and Damaura for teams.",
     url: `${site.url}/services/corporate`,
     type: "website",
   },
@@ -45,7 +44,7 @@ const businessCase = [
 
 const stats = [
   { value: "RM1.8B", label: "Annual cost of workplace stress in Malaysia" },
-  { value: "<10%", label: "Of companies have structured mental health programmes" },
+  { value: "<10%", label: "of companies have structured mental health programmes" },
   { value: "4:1", label: "Average ROI on wellness investment" },
 ];
 
@@ -55,11 +54,6 @@ const offerings: {
   desc: string;
   badge?: string;
 }[] = [
-  {
-    icon: Brain,
-    title: "Employee Mental Health Screening",
-    desc: "Deploy Damaura-powered screening across your workforce. Employees complete a confidential AI-guided assessment. You receive anonymised aggregate insights to inform your wellness strategy.",
-  },
   {
     icon: Users,
     title: "On-Site & Online Therapy Sessions",
@@ -74,7 +68,7 @@ const offerings: {
   {
     icon: Smartphone,
     title: "Damaura for Teams",
-    desc: "Give every employee access to Damaura: daily mood tracking, sleep monitoring, guided reflections, and personalised wellness insights. A continuous support layer between sessions.",
+    desc: "Give every employee Damaura, our AI companion: mood check-ins, small daily practices, a journal, and a chat in English, BM or Manglish. You see aggregate engagement and recurring themes, never anyone's conversations or reflections.",
   },
   {
     icon: Briefcase,
@@ -114,7 +108,7 @@ export default function CorporatePage() {
           serviceNode({
             name: "Corporate Wellness Programmes",
             description:
-              "End-to-end employee wellness programmes designed for Malaysian workplaces. From screening and workshops to embedded therapy sessions and Damaura access.",
+              "End-to-end employee wellness programmes designed for Malaysian workplaces. From workshops and leadership briefings to embedded therapy sessions and Damaura access.",
             path: "/services/corporate",
             serviceType: "Corporate wellness programme",
             audience: "Employers and organisations",
@@ -124,7 +118,7 @@ export default function CorporatePage() {
       />
       {/* Hero */}
       <section
-        className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
+        className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden"
         style={{ background: "var(--gradient-sunrise)" }}
       >
         <ParallaxLayer speed={0.2} className="absolute inset-0 pointer-events-none">
@@ -132,33 +126,25 @@ export default function CorporatePage() {
         </ParallaxLayer>
 
         <Container className="relative z-10 text-center max-w-3xl mx-auto">
-          <FadeInOnScroll>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-4">
-              Corporate Services
-            </p>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-night leading-tight">
-              Invest in Your People. The Returns Are Real.
-            </h1>
-          </FadeInOnScroll>
-          <FadeInOnScroll delay={0.2}>
-            <p className="mt-6 text-lg text-night/60 leading-relaxed">
-              Serenitilabs delivers structured mental wellness programmes that
-              reduce absenteeism, improve retention, and build resilient teams,
-              backed by licensed therapists and powered by AI.
-            </p>
-          </FadeInOnScroll>
-          <FadeInOnScroll delay={0.3}>
-            <div className="mt-8">
-              <Button href="/about/contact?type=corporate" size="lg" showArrow>
-                Request a Proposal
-              </Button>
-            </div>
-          </FadeInOnScroll>
-          <FadeInOnScroll delay={0.4}>
-            <div className="mt-8 flex justify-center">
-              <CredentialBadge variant="strip" />
-            </div>
-          </FadeInOnScroll>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral-ink mb-4">
+            Corporate Services
+          </p>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-night leading-tight">
+            Invest in Your People. The Returns Are Real.
+          </h1>
+          <p className="mt-6 text-lg text-night/70 leading-relaxed">
+            Serenitilabs delivers structured mental wellness programmes that
+            reduce absenteeism, improve retention, and build resilient teams,
+            backed by licensed therapists and powered by AI.
+          </p>
+          <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 justify-center">
+            <Button href="/about/contact?type=corporate" size="lg" showArrow>
+              Request a Proposal
+            </Button>
+          </div>
+          <div className="mt-8 flex justify-center">
+            <CredentialBadge variant="strip" />
+          </div>
         </Container>
       </section>
 
@@ -168,23 +154,15 @@ export default function CorporatePage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
               <FadeInOnScroll>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
-                  The Business Case
-                </p>
-                <h2 className="font-serif text-3xl md:text-4xl text-night leading-tight">
+                <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night leading-tight">
                   Why Mental Wellness Is a Business Priority
                 </h2>
               </FadeInOnScroll>
               <FadeInOnScroll delay={0.2}>
-                <p className="mt-6 text-night/60 leading-relaxed">
-                  In Malaysia, workplace stress costs employers an estimated RM1.8
-                  billion annually in lost productivity. Yet fewer than 10% of
-                  companies have structured mental health programmes in place.
-                </p>
-                <ul className="mt-6 space-y-3">
+                <ul className="mt-8 space-y-3">
                   {businessCase.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-coral mt-0.5 shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-coral mt-0.5 shrink-0" strokeWidth={1.75} />
                       <span className="text-night/70">{item}</span>
                     </li>
                   ))}
@@ -199,10 +177,10 @@ export default function CorporatePage() {
                     key={s.value}
                     className="rounded-card bg-white shadow-card p-6 md:p-7"
                   >
-                    <p className="font-serif text-4xl md:text-5xl text-coral leading-none">
+                    <p className="font-serif text-4xl md:text-5xl text-coral-ink leading-none">
                       {s.value}
                     </p>
-                    <p className="mt-3 text-sm text-night/60 leading-relaxed">
+                    <p className="mt-3 text-sm text-night/70 leading-relaxed">
                       {s.label}
                     </p>
                   </div>
@@ -221,28 +199,25 @@ export default function CorporatePage() {
 
         <Container className="relative z-10">
           <FadeInOnScroll>
-            <div className="text-center mb-16">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
-                What We Offer
-              </p>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night">
-                Comprehensive Corporate Solutions
-              </h2>
-            </div>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night leading-tight text-center mb-12 md:mb-16">
+              What We Offer
+            </h2>
           </FadeInOnScroll>
 
           <FadeInOnScroll>
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="grid sm:grid-cols-2 gap-6 max-w-5xl mx-auto">
               {offerings.map((o) => (
                 <div
                   key={o.title}
-                  className="w-full sm:w-[calc(50%_-_0.75rem)] lg:w-[calc(33.333%_-_1rem)] bg-dawn rounded-card p-8 shadow-card hover:shadow-card-hover transition-all duration-500 hover:-translate-y-1"
+                  className="bg-dawn rounded-card p-8 shadow-card h-full"
                 >
-                  <o.icon className="w-8 h-8 text-coral mb-5" />
+                  <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white">
+                    <o.icon className="h-6 w-6 text-coral" strokeWidth={1.75} />
+                  </span>
                   <h3 className="font-sans text-lg font-semibold text-night mb-3">
                     {o.title}
                   </h3>
-                  <p className="text-night/60 text-sm leading-relaxed">
+                  <p className="text-night/70 leading-relaxed">
                     {o.desc}
                   </p>
                   {o.badge && (
@@ -269,64 +244,48 @@ export default function CorporatePage() {
       <section className="py-20 md:py-28 bg-dawn relative overflow-hidden">
         <Container className="relative z-10">
           <FadeInOnScroll>
-            <div className="text-center mb-16">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
-                How It Works
-              </p>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night">
-                Three Simple Steps
-              </h2>
-            </div>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night leading-tight text-center mb-12 md:mb-16">
+              How It Works
+            </h2>
           </FadeInOnScroll>
 
-          <StaggerChildren className="grid md:grid-cols-3 gap-8">
+          <StaggerChildren className="grid md:grid-cols-3 gap-10 text-left">
             {steps.map((step) => (
-              <div
-                key={step.num}
-                className="bg-white rounded-card shadow-card p-8 text-center"
-              >
-                <span className="text-5xl font-serif text-indigo/30">
+              <div key={step.num} className="h-full border-t border-night/15 pt-6">
+                <span className="block text-5xl font-serif text-indigo/60 leading-none">
                   {step.num}
                 </span>
-                <h3 className="font-sans text-xl font-semibold text-night mt-4 mb-3">
+                <h3 className="font-sans text-xl font-semibold text-night mt-5 mb-3">
                   {step.title}
                 </h3>
-                <p className="text-night/60 leading-relaxed">{step.desc}</p>
+                <p className="text-night/70 leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </StaggerChildren>
-
-          <FadeInOnScroll>
-            <div className="text-center mt-12">
-              <Button href="/about/contact?type=corporate" size="lg" showArrow>
-                Request a Proposal
-              </Button>
-            </div>
-          </FadeInOnScroll>
         </Container>
       </section>
 
       {/* Scale CTA */}
-      <section className="relative py-16 md:py-20 bg-indigo bg-[url('/images/indigo-bg.png')] bg-cover bg-center overflow-hidden">
+      <section className="relative py-16 md:py-20 bg-indigo bg-[url('/images/indigo-bg.webp')] bg-cover bg-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none bg-indigo/30" />
         <Container className="relative z-10 text-center">
           <FadeInOnScroll>
             <h2 className="font-serif text-3xl md:text-4xl text-dawn leading-tight">
-              Packages Scale With Your Organisation
+              Packages Scale with Your Organisation
             </h2>
             <p className="mt-4 text-dawn/60 max-w-xl mx-auto leading-relaxed">
               Whether you&apos;re a startup of 20 or an enterprise of 2,000, our
               programmes adapt. We offer modular packages that you can build up
               over time as you see results.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 justify-center">
               <Button
                 href="/about/contact?type=corporate"
                 size="lg"
-                className="bg-coral text-white hover:bg-coral/90"
+                className="bg-coral text-night hover:bg-sunrise"
                 showArrow
               >
-                Get in Touch
+                Request a Proposal
               </Button>
             </div>
           </FadeInOnScroll>

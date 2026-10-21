@@ -10,6 +10,8 @@ interface BlogCardProps {
   date: string;
   slug: string;
   art?: Motif;
+  /** Wide two-column layout for the lead post on the blog index. */
+  featured?: boolean;
   className?: string;
 }
 
@@ -20,18 +22,25 @@ export function BlogCard({
   date,
   slug,
   art,
+  featured = false,
   className,
 }: BlogCardProps) {
   return (
     <Link
       href={`/blog/${slug}`}
       className={cn(
-        "group block bg-white rounded-card shadow-card overflow-hidden transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1",
+        "group flex h-full flex-col bg-white rounded-card shadow-card overflow-hidden transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1",
+        featured && "md:grid md:grid-cols-2",
         className
       )}
     >
       {/* Metaphorical brand artwork */}
-      <div className="relative aspect-[3/2] overflow-hidden">
+      <div
+        className={cn(
+          "relative aspect-[3/2] overflow-hidden",
+          featured && "md:aspect-auto md:h-full md:min-h-[320px]"
+        )}
+      >
         <BlogArt
           seed={slug}
           motif={art}
@@ -39,15 +48,25 @@ export function BlogCard({
         />
       </div>
 
-      <div className="p-6">
+      <div className={cn("flex flex-1 flex-col p-6", featured && "md:justify-center md:p-10")}>
         <div className="flex items-center gap-3 mb-3">
           <Tag variant="lavender">{category}</Tag>
-          <span className="text-xs text-night/55">{date}</span>
+          <span className="text-xs text-night/70">{date}</span>
         </div>
-        <h3 className="font-serif text-lg text-night group-hover:text-coral transition-colors leading-snug">
+        <h3
+          className={cn(
+            "font-serif text-night group-hover:text-coral-ink transition-colors leading-snug",
+            featured ? "text-xl md:text-3xl" : "text-lg"
+          )}
+        >
           {title}
         </h3>
-        <p className="text-sm text-night/60 mt-2 leading-relaxed line-clamp-2">
+        <p
+          className={cn(
+            "text-night/70 mt-2 leading-relaxed",
+            featured ? "text-sm md:text-lg md:mt-4" : "text-sm line-clamp-3"
+          )}
+        >
           {excerpt}
         </p>
       </div>

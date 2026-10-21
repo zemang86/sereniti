@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }[] = [
     { path: "/", priority: 1, changeFrequency: "weekly" },
     { path: "/services", priority: 0.9, changeFrequency: "monthly" },
-    { path: "/services/screening", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/damaura", priority: 0.8, changeFrequency: "monthly" },
     { path: "/services/psychotherapy", priority: 0.8, changeFrequency: "monthly" },
     { path: "/services/psychotherapy/adults", priority: 0.7, changeFrequency: "monthly" },
     { path: "/services/psychotherapy/children", priority: 0.7, changeFrequency: "monthly" },
@@ -36,7 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => {
-    const parsed = new Date(post.date);
+    const parsed = new Date(post.updated ?? post.date);
     return {
       url: `${site.url}/blog/${post.slug}`,
       lastModified: isNaN(parsed.getTime()) ? now : parsed,

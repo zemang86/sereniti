@@ -5,6 +5,9 @@
   --color-sunrise: #F5D3B8;
   --color-dawn: #FFF6EF;
   --color-coral: #E07A4B;
+  /* Coral as TEXT or behind white text fails AA (2.8:1 on dawn). Use coral-ink
+     for those (5.5:1 dawn, 5.9:1 white); keep coral for icons and fills. */
+  --color-coral-ink: #A34A26;
   --color-night: #1C1C1E;
   --color-indigo: #1E1A93;
   --color-indigo-light: #2D28A6;
@@ -14,9 +17,23 @@
   --color-cloud: #D8E8F0;
   --color-mist: #F8DED4;
 
+  /* Damaura (product) colours: use only inside Damaura sections.
+     Coral is for fills and icons; as small text use damaura-coral-text. */
+  --color-damaura-paper: #FBF7F2;
+  --color-damaura-plum: #5B2A86;
+  --color-damaura-plum-soft: #EFE6F6;
+  --color-damaura-coral: #E8603C;
+  --color-damaura-coral-text: #B8452A;
+  --color-damaura-peach: #FFD8B8;
+  --color-damaura-ink: #1F1A24;
+  --color-damaura-muted: #5B5260;
+  --color-damaura-border: #E7DDD3;
+
   /* Fonts */
   --font-serif: "DM Serif Display", Georgia, serif;
   --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-damaura-display: var(--font-fraunces), Georgia, serif;
+  --font-damaura-sans: var(--font-jakarta), system-ui, sans-serif;
 
   /* Border Radius */
   --radius-card: 20px;
@@ -36,45 +53,53 @@
   --gradient-calm-fade: linear-gradient(to right, #FFF6EF, #FFFFFF);
 }
 
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
+/* Base element styles live in the base layer. Unlayered rules beat every
+   Tailwind utility (which sit in @layer utilities), so before this an
+   `h3.font-sans` still rendered DM Serif, and focus squared every pill. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Anchor targets clear the fixed header. */
+    scroll-padding-top: 88px;
+  }
 
-body {
-  background-color: #FFF6EF;
-  color: #1C1C1E;
-  font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv01", "cv11";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
+  body {
+    background-color: #FFF6EF;
+    color: #1C1C1E;
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 
-/* Serif headings: DM Serif Display tightens up nicely at display sizes,
-   and balanced wrapping avoids lonely last-line orphans. */
-h1, h2, h3 {
-  font-family: var(--font-serif);
-  letter-spacing: -0.015em;
-  text-wrap: balance;
-}
+  /* Serif headings: DM Serif Display tightens up nicely at display sizes,
+     and balanced wrapping avoids lonely last-line orphans. */
+  h1, h2, h3 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
 
-/* Body copy reads calmer with pretty wrapping (no orphan widows). */
-p {
-  text-wrap: pretty;
-}
+  /* Body copy reads calmer with pretty wrapping (no orphan widows). */
+  p {
+    text-wrap: pretty;
+  }
 
-/* Selection color */
-::selection {
-  background-color: #F5D3B8;
-  color: #1C1C1E;
-}
+  ::selection {
+    background-color: #F5D3B8;
+    color: #1C1C1E;
+  }
 
-/* Focus ring */
-*:focus-visible {
-  outline: 2px solid #E07A4B;
-  outline-offset: 2px;
-  border-radius: 4px;
+  /* Focus ring: night passes 3:1 on every light surface; dawn on dark ones. */
+  :focus-visible {
+    outline: 2px solid #1C1C1E;
+    outline-offset: 3px;
+  }
+
+  :is(.bg-night, .bg-indigo) :focus-visible {
+    outline-color: #FFF6EF;
+  }
 }
 
 /* Respect users who prefer reduced motion: safety net across all

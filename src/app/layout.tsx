@@ -11,7 +11,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Serenitilabs — Mental Health Care & Therapy in Malaysia",
+    default: "Serenitilabs | Mental Health Care & Therapy in Malaysia",
     template: "%s | Serenitilabs",
   },
   description: site.shortDescription,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "online therapy",
     "corporate wellness",
     "employee mental health",
-    "mental health screening",
+    "AI mental health companion",
     "Damaura",
     "Serenitilabs",
   ],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: "Serenitilabs — Mental Health Care & Therapy in Malaysia",
+    title: "Serenitilabs | Mental Health Care & Therapy in Malaysia",
     description: site.shortDescription,
     url: site.url,
     locale: "en_MY",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Serenitilabs — Mental Health Care & Therapy in Malaysia",
+    title: "Serenitilabs | Mental Health Care & Therapy in Malaysia",
     description: site.shortDescription,
     images: [site.ogImage],
   },
@@ -80,9 +80,17 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col antialiased">
         <JsonLd data={graph(organizationNode(), websiteNode())} />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-button focus:bg-night focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
+        >
+          Skip to content
+        </a>
         <MotionProvider>
           <Header />
-          <main className="flex-1">{children}</main>
+          <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
+            {children}
+          </main>
           <Footer />
         </MotionProvider>
       </body>

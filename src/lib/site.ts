@@ -30,9 +30,9 @@ export const site = {
   // Short, factual, entity-rich descriptions (good for AEO/GEO citation)
   tagline: "Expert care. Intelligent support.",
   description:
-    "Serenitilabs is a Malaysian mental health technology company that combines licensed clinical expertise with AI-powered tools to deliver accessible, personalised mental health care for individuals and organisations. It offers psychotherapy, digital mental health screening, and corporate wellness programmes across Malaysia, powered by its AI companion, Damaura.",
+    "Serenitilabs is an AI-native mental health provider in Malaysia. Its licensed clinical psychologists deliver psychotherapy and corporate wellness programmes for individuals and organisations, and its own AI companion, Damaura, supports people between sessions. Clinicians do the care; AI does the work around it.",
   shortDescription:
-    "Expert-led mental health support, enhanced by AI. Psychotherapy, digital screening, and corporate wellness programmes in Malaysia.",
+    "Expert-led mental health support, enhanced by AI. Psychotherapy, corporate wellness programmes, and Damaura, our AI companion, in Malaysia.",
   founded: "2026-01-05",
   email: "hello@sereniti.my",
   phone: "+60 18-398 1795",
@@ -46,19 +46,29 @@ export const site = {
   areaServed: "Malaysia",
   /**
    * Malaysian crisis lines. Duty of care: these must be reachable from site
-   * chrome on every page, not buried inside article prose. Numbers match those
-   * already cited throughout src/content/blog.ts.
+   * chrome on every page, not buried inside article prose. Same set as the
+   * Damaura app's crisis card (damaura repo: mobile/src/content/crisis.ts).
    */
   crisis: {
     lines: [
       { name: "Befrienders KL", detail: "24 hours", display: "03-7627 2929", tel: "+60376272929" },
       { name: "Talian Kasih", detail: "24 hours", display: "15999", tel: "15999" },
+      { name: "MHPSS Helpline", detail: "Ministry of Health", display: "03-2935 9935", tel: "+60329359935" },
       { name: "Emergency", detail: "police / ambulance", display: "999", tel: "999" },
     ],
   },
+  /**
+   * Damaura, Serenitilabs' AI companion. Only the web app is live; native apps
+   * are "coming soon" with no date. Never advertise pricing or a store listing.
+   */
+  damaura: {
+    url: "https://damaura.ai",
+    app: "https://damaura-app.netlify.app",
+    email: "hello@damaura.ai",
+  },
   // Real social profile URLs (used for schema.org sameAs). Empty = omitted.
   social: {
-    instagram: "https://www.instagram.com/damaura.ai/",
+    instagram: "https://www.instagram.com/serenitilabs.my/",
     linkedin: "",
     facebook: "",
   },

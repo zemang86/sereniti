@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { User } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft, User } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
@@ -45,6 +46,32 @@ export default async function TeamMemberPage({ params }: { params: Params }) {
 
   const hasQualifications = member.qualifications.length > 0;
 
+  const specialtiesCard = (
+    <div className="bg-white rounded-card shadow-card p-8">
+      <h2 className="font-sans text-lg font-semibold text-night mb-4">
+        Specialties
+      </h2>
+      <div className="flex flex-wrap gap-2">
+        {member.specialties.map((s) => (
+          <Tag key={s} variant="lavender">{s}</Tag>
+        ))}
+      </div>
+    </div>
+  );
+
+  const languagesCard = (
+    <div className="bg-white rounded-card shadow-card p-8">
+      <h2 className="font-sans text-lg font-semibold text-night mb-4">
+        Languages
+      </h2>
+      <div className="flex flex-wrap gap-2">
+        {member.languages.map((l) => (
+          <Tag key={l} variant="mist">{l}</Tag>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <>
       <JsonLd
@@ -59,7 +86,7 @@ export default async function TeamMemberPage({ params }: { params: Params }) {
       />
       {/* Hero */}
       <section
-        className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden"
+        className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden"
         style={{ background: "var(--gradient-sunrise)" }}
       >
         <ParallaxLayer speed={0.2} className="absolute inset-0 pointer-events-none">
@@ -68,35 +95,41 @@ export default async function TeamMemberPage({ params }: { params: Params }) {
 
         <Container className="relative z-10">
           <div className="grid lg:grid-cols-3 gap-12 items-start">
-            {/* Photo */}
-            <FadeInOnScroll className="lg:col-span-1">
-              <div className="relative aspect-square overflow-hidden rounded-card bg-gradient-to-br from-white/60 to-mist/80 shadow-card flex items-center justify-center max-w-[320px] mx-auto">
+            {/* Photo (LCP image: no reveal, so it paints immediately) */}
+            <div className="lg:col-span-1">
+              <div className="relative aspect-square overflow-hidden rounded-card bg-gradient-to-br from-white/60 to-mist/80 shadow-card flex items-center justify-center max-w-[320px] mx-auto lg:mx-0">
                 {member.photo ? (
                   <Image
                     src={member.photo}
                     alt={member.name}
                     width={640}
                     height={640}
+                    sizes="320px"
                     className="h-full w-full object-cover object-top"
-                    priority
+                    loading="eager"
+                    fetchPriority="high"
                   />
                 ) : (
                   <User className="w-20 h-20 text-sunrise" strokeWidth={1} />
                 )}
               </div>
-            </FadeInOnScroll>
+            </div>
 
             {/* Bio */}
-            <FadeInOnScroll delay={0.15} className="lg:col-span-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-2">
-                {member.isLead ? "Lead Therapist" : "Therapist"}
-              </p>
+            <div className="lg:col-span-2">
+              <Link
+                href="/team"
+                className="mb-4 inline-flex items-center gap-1.5 text-sm font-medium text-night/70 hover:text-coral-ink"
+              >
+                <ArrowLeft className="w-4 h-4" strokeWidth={1.75} aria-hidden="true" />
+                Our Team
+              </Link>
               <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night leading-tight">
                 {member.name}
               </h1>
-              <p className="text-night/50 mt-1">{member.role}</p>
+              <p className="mt-1 text-lg text-night/70">{member.role}</p>
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-6 max-w-2xl space-y-4">
                 {member.bio.split("\n\n").map((para, i) => (
                   <p key={i} className="text-night/70 leading-relaxed">
                     {para}
@@ -105,11 +138,11 @@ export default async function TeamMemberPage({ params }: { params: Params }) {
               </div>
 
               <div className="mt-8">
-                <Button href="/about/contact" showArrow>
+                <Button href="/about/contact?type=therapy" showArrow>
                   Book with {member.name.split(" ")[0]}
                 </Button>
               </div>
-            </FadeInOnScroll>
+            </div>
           </div>
         </Container>
       </section>
@@ -118,53 +151,31 @@ export default async function TeamMemberPage({ params }: { params: Params }) {
       <section className="py-16 md:py-20 bg-dawn">
         <Container>
           <FadeInOnScroll>
-            <div
-              className={`grid gap-8 ${
-                hasQualifications
-                  ? "md:grid-cols-2 lg:grid-cols-3"
-                  : "md:grid-cols-2 max-w-3xl mx-auto"
-              }`}
-            >
-              {/* Specialties */}
-              <div className="bg-white rounded-card shadow-card p-8">
-                <h3 className="font-sans text-lg font-semibold text-night mb-4">
-                  Specialties
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {member.specialties.map((s) => (
-                    <Tag key={s} variant="lavender">{s}</Tag>
-                  ))}
+            {hasQualifications ? (
+              <div className="grid gap-8 lg:grid-cols-5 items-start">
+                <div className="lg:col-span-2 space-y-8">
+                  {specialtiesCard}
+                  {languagesCard}
                 </div>
-              </div>
-
-              {/* Qualifications */}
-              {hasQualifications && (
-                <div className="bg-white rounded-card shadow-card p-8">
-                  <h3 className="font-sans text-lg font-semibold text-night mb-4">
+                <div className="lg:col-span-3 bg-white rounded-card shadow-card p-8">
+                  <h2 className="font-sans text-lg font-semibold text-night mb-4">
                     Qualifications
-                  </h3>
+                  </h2>
                   <ul className="space-y-2">
                     {member.qualifications.map((q) => (
-                      <li key={q} className="text-sm text-night/60 leading-relaxed">
+                      <li key={q} className="text-sm text-night/70 leading-relaxed">
                         {q}
                       </li>
                     ))}
                   </ul>
                 </div>
-              )}
-
-              {/* Languages */}
-              <div className="bg-white rounded-card shadow-card p-8">
-                <h3 className="font-sans text-lg font-semibold text-night mb-4">
-                  Languages
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {member.languages.map((l) => (
-                    <Tag key={l} variant="mist">{l}</Tag>
-                  ))}
-                </div>
               </div>
-            </div>
+            ) : (
+              <div className="grid gap-8 md:grid-cols-2 items-start max-w-3xl mx-auto">
+                {specialtiesCard}
+                {languagesCard}
+              </div>
+            )}
           </FadeInOnScroll>
         </Container>
       </section>

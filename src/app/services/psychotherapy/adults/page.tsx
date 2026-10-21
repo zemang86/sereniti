@@ -41,8 +41,9 @@ export default function AdultsPage() {
         )}
       />
       <PsychotherapyTemplate
+      eyebrow="Adult Therapy"
       title="You Don't Have to Carry It Alone"
-      subtitle="Life is demanding. Work pressure, relationship strain, financial stress, grief, or simply feeling like something is off, these are real, valid reasons to seek support. Our adult psychotherapy services give you a confidential space to process, heal, and grow."
+      subtitle="Life is demanding. Work pressure, relationship strain, financial stress, grief, or simply feeling like something is off: these are real, valid reasons to seek support. Our adult psychotherapy services give you a confidential space to process, heal, and grow."
       issuesTitle="What We Help With"
       issues={[
         "Anxiety and panic",
@@ -56,12 +57,12 @@ export default function AdultsPage() {
         "Sleep and stress-related physical symptoms",
       ]}
       formats={[
-        "Online sessions via secure video call",
-        "In-person sessions (Kuala Lumpur)",
-        "50-minute standard sessions",
+        { kind: "online", label: "Online sessions via secure video call" },
+        { kind: "in-person", label: "In-person sessions (Kuala Lumpur)" },
+        { kind: "duration", label: "50-minute standard sessions" },
       ]}
       firstSession="Your first session is about getting to know each other. Your therapist will listen to what brought you here, understand your goals, and discuss how therapy can help. There's no pressure to share more than you're comfortable with."
-      ongoingSupport="Between sessions, Damaura helps you stay connected to your progress, with daily mood check-ins, journaling prompts, and personalised insights that your therapist can review with your consent."
+      ongoingSupport="Between sessions, Damaura helps you stay connected to your progress, with daily mood check-ins, a journal with a daily prompt, and a gentle look back at how your weeks have been going."
       />
     </>
   );

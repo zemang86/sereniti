@@ -98,9 +98,11 @@ function Scene({ motif }: { motif: Motif }) {
             </linearGradient>
           </defs>
           <rect width="480" height="320" fill={`url(#${id})`} />
-          <path d="M60 300 C140 250 120 190 210 170 C300 150 300 100 380 70" fill="none" stroke={C.indigo} strokeWidth="5" strokeLinecap="round" strokeDasharray="2 16" opacity="0.7" />
-          <circle cx="388" cy="66" r="26" fill={C.coral} />
-          <circle cx="60" cy="300" r="10" fill={C.indigo} opacity="0.7" />
+          {/* Kept inside x 120-370, y 60-260 so both ends survive the 21:9
+              article crop and the taller featured-card crop. */}
+          <path d="M133 236 C185 204 172 165 231 152 C289 139 289 106 341 87" fill="none" stroke={C.indigo} strokeWidth="5" strokeLinecap="round" strokeDasharray="2 16" opacity="0.7" />
+          <circle cx="346" cy="84" r="22" fill={C.coral} />
+          <circle cx="133" cy="236" r="9" fill={C.indigo} opacity="0.7" />
         </>
       );
     case "orbit":
@@ -202,7 +204,6 @@ export function BlogArt({
       viewBox="0 0 480 320"
       preserveAspectRatio="xMidYMid slice"
       className={className}
-      role="img"
       aria-hidden="true"
     >
       <Scene motif={chosen} />

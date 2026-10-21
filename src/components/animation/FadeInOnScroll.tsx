@@ -35,7 +35,9 @@ export function FadeInOnScroll({
     <motion.div
       initial={{ opacity: 0, y: initialY, x: initialX }}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      // "some", not a ratio: a ratio can never be met by an element taller
+      // than 1/ratio viewports (long articles and the blog grid stayed blank).
+      viewport={{ once: true, amount: "some", margin: "0px 0px -80px 0px" }}
       transition={{
         duration,
         delay,

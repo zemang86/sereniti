@@ -1,9 +1,5 @@
-"use client";
-
-import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Brain, Heart, Building } from "lucide-react";
+import { MessageCircleHeart, Heart, Building, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -13,14 +9,16 @@ import { FadeInOnScroll } from "@/components/animation/FadeInOnScroll";
 import { StaggerChildren } from "@/components/animation/StaggerChildren";
 import { ParallaxLayer } from "@/components/animation/ParallaxLayer";
 import { BlobShape } from "@/components/decorative/BlobShape";
+import { DamauraCarousel } from "@/components/sections/DamauraCarousel";
 import { FAQ } from "@/components/sections/FAQ";
 import { CredentialBadge } from "@/components/ui/CredentialBadge";
 import { teamMembers } from "@/content/team";
+import { site } from "@/lib/site";
 
 /* ─── Hero ─── */
 function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative lg:min-h-[min(100svh,780px)] flex items-center overflow-hidden">
       {/* Background gradient */}
       <div
         className="absolute inset-0"
@@ -57,60 +55,59 @@ function HeroSection() {
         />
       </ParallaxLayer>
 
-      <Container className="relative z-10 pt-32 pb-20 md:pt-40 md:pb-28">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* Fade the sunrise into the dawn services section so there is no hard seam */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-dawn"
+      />
+
+      {/* Hero copy and image render without reveal animations: they are the LCP. */}
+      <Container className="relative z-10 w-full pt-28 pb-16 md:pt-32 md:pb-20">
+        <div className="grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-16 items-center">
           <div>
-            <FadeInOnScroll delay={0.1}>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-[60px] text-night leading-[1.1] tracking-tight">
-                Mental Health Support That Meets Your People Where They Are
-              </h1>
-            </FadeInOnScroll>
-            <FadeInOnScroll delay={0.3}>
-              <p className="mt-6 text-lg md:text-xl text-night/60 leading-relaxed max-w-xl">
-                Serenitilabs combines expert therapists with AI-powered tools to
-                deliver accessible, personalised mental health care, for
-                individuals and organisations.
-              </p>
-            </FadeInOnScroll>
-            <FadeInOnScroll delay={0.5}>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="/about/contact" size="lg" showArrow>
-                  Get Started
-                </Button>
-                <Button
-                  href="/services/corporate"
-                  variant="secondary"
-                  size="lg"
-                >
-                  Explore Corporate Packages
-                </Button>
-              </div>
-            </FadeInOnScroll>
-            <FadeInOnScroll delay={0.7}>
-              <div className="mt-8">
-                <CredentialBadge variant="strip" showCertLink={false} />
-              </div>
-            </FadeInOnScroll>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-[46px] xl:text-[60px] text-night leading-[1.05] tracking-tight">
+              Mental Health Support That Meets Your People Where They Are
+            </h1>
+            <p className="mt-6 text-lg md:text-xl text-night/70 leading-relaxed max-w-xl">
+              Serenitilabs combines expert therapists with AI-powered tools to
+              deliver accessible, personalised mental health care, for
+              individuals and organisations.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
+              <Button href="/about/contact" size="lg" showArrow>
+                Get in Touch
+              </Button>
+              <Button
+                href="/services/corporate"
+                variant="secondary"
+                size="lg"
+              >
+                Explore Corporate Packages
+              </Button>
+            </div>
+            <div className="mt-8">
+              <CredentialBadge variant="strip" showCertLink={false} />
+            </div>
           </div>
 
           {/* Hero image */}
-          <FadeInOnScroll delay={0.4} direction="right">
-            <div className="relative">
-              <div className="rounded-card overflow-hidden shadow-card">
-                <Image
-                  src="/images/hero.png"
-                  alt="A figure standing peacefully under a starry night sky"
-                  width={1200}
-                  height={675}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
-              </div>
-              {/* Floating accents */}
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-lavender/20 rounded-full blur-3xl" />
-              <div className="absolute -top-6 -right-6 w-40 h-40 bg-sunrise/30 rounded-full blur-3xl" />
+          <div className="relative">
+            <div className="rounded-card overflow-hidden shadow-card">
+              <Image
+                src="/images/hero.png"
+                alt="A figure standing peacefully under a starry night sky"
+                width={1200}
+                height={675}
+                sizes="(min-width: 1024px) 560px, calc(100vw - 48px)"
+                className="w-full h-auto object-cover"
+                loading="eager"
+                fetchPriority="high"
+              />
             </div>
-          </FadeInOnScroll>
+            {/* Floating accents */}
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-lavender/20 rounded-full blur-3xl" />
+            <div className="absolute -top-6 -right-6 w-40 h-40 bg-sunrise/30 rounded-full blur-3xl" />
+          </div>
         </div>
       </Container>
     </section>
@@ -119,8 +116,10 @@ function HeroSection() {
 
 /* ─── Services Overview ─── */
 function ServicesSection() {
+  // The hero fades into dawn, so there is no surface change to pad against: a full
+  // top padding here stacked a ~280px empty band under the hero.
   return (
-    <section className="relative py-20 md:py-28 bg-dawn overflow-hidden">
+    <section className="relative pt-12 pb-20 md:pt-16 md:pb-28 bg-dawn overflow-hidden">
       <ParallaxLayer speed={0.15} className="absolute inset-0 pointer-events-none">
         <BlobShape
           variant={3}
@@ -135,7 +134,6 @@ function ServicesSection() {
       <Container className="relative z-10">
         <FadeInOnScroll>
           <SectionHeader
-            overline="Our Services"
             title="How We Can Help"
             subtitle="Whether you're an individual seeking clarity or an organisation investing in your team's wellbeing, we have a pathway for you."
           />
@@ -143,11 +141,11 @@ function ServicesSection() {
 
         <StaggerChildren className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <ServiceCard
-            icon={Brain}
-            title="Digital Mental Health Screening"
-            description="A confidential, AI-guided assessment that helps individuals understand their mental health, and helps organisations identify how to best support their teams."
-            href="/services/screening"
-            ctaLabel="Learn More"
+            icon={MessageCircleHeart}
+            title="Damaura, Our AI Companion"
+            description="Check in on your mood, build small daily practices, and talk things through in English, BM or Manglish. Free to start on the web."
+            href="/damaura"
+            ctaLabel="Meet Damaura"
             variant="indigo"
           />
           <ServiceCard
@@ -155,14 +153,14 @@ function ServicesSection() {
             title="Psychotherapy"
             description="Evidence-based therapy for adults, children, couples, and families. Online or in-person, with therapists who listen before they help you navigate your difficulties."
             href="/services/psychotherapy"
-            ctaLabel="View Services"
+            ctaLabel="Explore Therapy"
           />
           <ServiceCard
             icon={Building}
             title="Corporate Services"
-            description="Structured mental wellness programmes for organisations: from employee screening to on-site therapy sessions and leadership workshops."
+            description="Structured mental wellness programmes for organisations: on-site and online therapy, leadership workshops, and Damaura for your whole team."
             href="/services/corporate"
-            ctaLabel="Talk to Us"
+            ctaLabel="Explore Corporate Services"
             variant="mist"
           />
         </StaggerChildren>
@@ -180,24 +178,24 @@ function TrustSection() {
   ];
 
   return (
-    <section className="relative py-16 md:py-20 overflow-hidden bg-indigo bg-[url('/images/indigo-bg.png')] bg-cover bg-center">
+    <section className="relative py-16 md:py-20 overflow-hidden bg-indigo bg-[url('/images/indigo-bg.webp')] bg-cover bg-center">
       {/* Subtle glow overlay */}
       <div className="absolute inset-0 pointer-events-none bg-indigo/40" />
 
       <Container className="relative z-10">
         <FadeInOnScroll>
-          <p className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-dawn/50 mb-10">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-dawn/70 mb-8 md:mb-10">
             Trusted by Teams Across Malaysia
           </p>
         </FadeInOnScroll>
 
-        <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <StaggerChildren className="grid grid-cols-3 gap-4 md:gap-8">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="font-serif text-4xl md:text-5xl text-dawn">
+              <p className="font-serif text-3xl md:text-5xl text-dawn">
                 {stat.value}
               </p>
-              <p className="text-sm text-dawn/50 mt-2">{stat.label}</p>
+              <p className="text-sm text-dawn/70 mt-2 leading-snug">{stat.label}</p>
             </div>
           ))}
         </StaggerChildren>
@@ -206,99 +204,22 @@ function TrustSection() {
   );
 }
 
-/* ─── Damaura Mockup Carousel ─── */
-const damauraMockups = [
-  { src: "/images/damaura-mock-01.png", alt: "Damaura app: 5 Pillars of Wellness dashboard" },
-  { src: "/images/damaura-mock-02.png", alt: "Damaura app: Your Wellness insights and mood tracker" },
-  { src: "/images/damaura-mock-03.png", alt: "Damaura app: Talk to Damaura AI and daily reflections" },
-];
-
-function DamauraMockupCarousel() {
-  const [current, setCurrent] = useState(0);
-
-  const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % damauraMockups.length);
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(next, 4000);
-    return () => clearInterval(timer);
-  }, [next]);
-
-  return (
-    <div className="relative max-w-[380px] mx-auto">
-      {/* Glow behind */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-sunrise/25 rounded-full blur-[60px] pointer-events-none" />
-
-      {/* Images */}
-      <div className="relative overflow-hidden rounded-[28px] shadow-2xl">
-        {damauraMockups.map((mock, i) => (
-          <motion.div
-            key={mock.src}
-            className={i === 0 ? "relative" : "absolute inset-0"}
-            initial={false}
-            animate={{
-              opacity: i === current ? 1 : 0,
-              scale: i === current ? 1 : 1.05,
-            }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            <Image
-              src={mock.src}
-              alt={mock.alt}
-              width={1024}
-              height={1024}
-              className="w-full h-auto block"
-              priority={i === 0}
-            />
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-5">
-        {damauraMockups.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            aria-label={`Show mockup ${i + 1}`}
-            className={`h-2 rounded-full transition-all duration-500 ${
-              i === current
-                ? "w-6 bg-coral"
-                : "w-2 bg-night/15 hover:bg-night/30"
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 /* ─── Damaura Spotlight ─── */
-function DamauraSpolight() {
+function DamauraSpotlight() {
   return (
-    <section className="relative py-20 md:py-28 bg-white overflow-hidden">
-      <ParallaxLayer speed={0.2} className="absolute inset-0 pointer-events-none">
-        <BlobShape
-          variant={1}
-          color="#F5D3B8"
-          size={500}
-          opacity={0.1}
-          blur={50}
-          className="-left-[10%] top-[10%]"
-        />
-      </ParallaxLayer>
-
+    // Damaura's paper surface sits between dawn sections; the border makes the change read as deliberate.
+    <section className="relative py-20 md:py-28 bg-damaura-paper border-y border-damaura-border/60 overflow-hidden">
       <Container className="relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* App mockup carousel */}
-          <FadeInOnScroll direction="left">
-            <DamauraMockupCarousel />
+        <div className="grid lg:grid-cols-[5fr_7fr] gap-12 lg:gap-16 items-center">
+          {/* App mockup carousel: after the copy on mobile so the heading leads */}
+          <FadeInOnScroll direction="left" className="order-last lg:order-none">
+            {/* Sits at the inner edge of its column on desktop so the phone and copy read as one group */}
+            <DamauraCarousel className="lg:mr-0" />
           </FadeInOnScroll>
 
           <div>
             <FadeInOnScroll>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-damaura-plum mb-3">
                 Powered by Damaura
               </p>
               <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-night leading-tight">
@@ -306,22 +227,27 @@ function DamauraSpolight() {
               </h2>
             </FadeInOnScroll>
             <FadeInOnScroll delay={0.2}>
-              <p className="mt-6 text-night/60 leading-relaxed">
+              <p className="mt-6 max-w-lg text-night/70 leading-relaxed">
                 Between sessions, your people aren&apos;t alone. Damaura is our
-                AI-powered companion that provides daily mood tracking, sleep
-                monitoring, guided reflections, and personalised mental health
-                insights, all from a single app.
+                AI companion for mental wellbeing, built for Southeast Asia and
+                grounded in CBT, DBT and ACT. It offers one-tap mood check-ins,
+                small daily practices, a journal, and a chat in English, BM or
+                Manglish, with an optional faith layer.
               </p>
-              <p className="mt-4 text-night/60 leading-relaxed">
-                For organisations, Damaura means real-time wellness data, early
-                intervention signals, and a scalable support layer that works
-                alongside your existing benefits programme.
+              <p className="mt-4 max-w-lg text-night/70 leading-relaxed">
+                For organisations, Damaura is a support layer for the whole team.
+                You see aggregate engagement and recurring themes, never
+                anyone&apos;s conversations or reflections.
               </p>
             </FadeInOnScroll>
             <FadeInOnScroll delay={0.3}>
-              <div className="mt-8">
-                <Button href="/services/screening" showArrow>
+              <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4">
+                <Button href="/damaura" showArrow>
                   See How Damaura Works
+                </Button>
+                <Button href={site.damaura.app} variant="ghost">
+                  Try Damaura Free
+                  <ArrowUpRight className="w-4 h-4" strokeWidth={1.75} />
                 </Button>
               </div>
             </FadeInOnScroll>
@@ -335,7 +261,8 @@ function DamauraSpolight() {
 /* ─── Team Teaser ─── */
 function TeamTeaser() {
   return (
-    <section className="relative py-20 md:py-28 bg-dawn overflow-hidden">
+    // Short bottom padding: the FAQ follows on the same dawn surface.
+    <section className="relative pt-20 pb-12 md:pt-28 md:pb-16 bg-dawn overflow-hidden">
       <ParallaxLayer speed={0.15} className="absolute inset-0 pointer-events-none">
         <BlobShape
           variant={2}
@@ -350,7 +277,6 @@ function TeamTeaser() {
       <Container className="relative z-10">
         <FadeInOnScroll>
           <SectionHeader
-            overline="Our Team"
             title="The People Behind Your Support"
             subtitle="Our therapists are licensed, experienced, and genuinely passionate about what they do."
           />
@@ -365,7 +291,6 @@ function TeamTeaser() {
               specialties={member.specialties}
               slug={member.slug}
               photo={member.photo}
-              isLead={member.isLead}
             />
           ))}
         </StaggerChildren>
@@ -385,7 +310,7 @@ function TeamTeaser() {
 /* ─── Final CTA ─── */
 function FinalCTA() {
   return (
-    <section className="relative py-20 md:py-28 bg-indigo bg-[url('/images/indigo-bg.png')] bg-cover bg-center overflow-hidden">
+    <section className="relative py-20 md:py-28 bg-indigo bg-[url('/images/indigo-bg.webp')] bg-cover bg-center overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-indigo/30" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-coral/5 rounded-full blur-[80px]" />
@@ -394,21 +319,21 @@ function FinalCTA() {
       <Container className="relative z-10 text-center">
         <FadeInOnScroll>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-dawn leading-tight">
-            Ready to Support Your Team&apos;s Wellbeing?
+            Ready to Take the First Step?
           </h2>
         </FadeInOnScroll>
         <FadeInOnScroll delay={0.2}>
-          <p className="mt-6 text-dawn/60 text-lg max-w-xl mx-auto leading-relaxed">
-            Whether you&apos;re looking for corporate wellness packages or personal
-            therapy, we&apos;re here to help you take the first step.
+          <p className="mt-6 text-dawn/70 text-lg max-w-xl mx-auto leading-relaxed">
+            Whether it&apos;s corporate wellness for your team or therapy for
+            yourself, we&apos;ll help you find the right support.
           </p>
         </FadeInOnScroll>
         <FadeInOnScroll delay={0.3}>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 sm:gap-4">
             <Button
               href="/about/contact"
               size="lg"
-              className="bg-coral text-white hover:bg-coral/90"
+              className="bg-coral text-night hover:bg-sunrise"
               showArrow
             >
               Get in Touch
@@ -417,7 +342,7 @@ function FinalCTA() {
               href="/services/corporate"
               variant="ghost"
               size="lg"
-              className="text-dawn border-dawn/20 hover:border-coral hover:text-coral"
+              className="text-dawn border-dawn/40 hover:border-sunrise hover:text-sunrise"
             >
               Explore Corporate Packages
             </Button>
@@ -435,7 +360,7 @@ export default function HomePage() {
       <HeroSection />
       <ServicesSection />
       <TrustSection />
-      <DamauraSpolight />
+      <DamauraSpotlight />
       <TeamTeaser />
       <FAQ />
       <FinalCTA />

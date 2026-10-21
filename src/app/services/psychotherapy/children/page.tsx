@@ -41,6 +41,7 @@ export default function ChildrenPage() {
         )}
       />
       <PsychotherapyTemplate
+      eyebrow="Child Therapy"
       title="Supporting Young Minds to Thrive"
       subtitle="Children experience the world with big emotions and developing coping skills. When they struggle, whether with anxiety, behavioural changes, school stress, or family transitions, the right support can make a lasting difference."
       issuesTitle="Signs Your Child Might Benefit"
@@ -58,9 +59,9 @@ export default function ChildrenPage() {
         body: "We use age-appropriate, evidence-based therapeutic approaches including play therapy, art-based expression, and cognitive-behavioural techniques adapted for children. Every intervention is tailored to your child's developmental stage and unique needs. You're part of the process. We provide regular updates, guidance on how to support your child at home, and family sessions when appropriate.",
       }}
       formats={[
-        "In-person sessions (recommended for younger children)",
-        "Online sessions available for older children and teens",
-        "50-minute sessions, with flexible scheduling",
+        { kind: "in-person", label: "In-person sessions (recommended for younger children)" },
+        { kind: "online", label: "Online sessions available for older children and teens" },
+        { kind: "duration", label: "50-minute sessions, with flexible scheduling" },
       ]}
       />
     </>

@@ -148,7 +148,7 @@ export function personNode(member: {
  * Service properties and are NOT in the domain of `MedicalTherapy`
  * (MedicalProcedure -> MedicalEntity), so a bare MedicalTherapy node has both
  * of them ignored. Pass `medical: false` for offerings that are not a therapy
- * (screening, corporate programmes).
+ * (corporate programmes).
  */
 export function serviceNode(svc: {
   name: string;
@@ -190,6 +190,24 @@ export function serviceNode(svc: {
         },
       },
     ],
+  };
+}
+
+/**
+ * Damaura as a WebApplication (only the web app is live). No `offers`: there is
+ * no published pricing, and inventing one would be a false claim to crawlers.
+ */
+export function damauraAppNode(description: string): Node {
+  return {
+    "@type": "WebApplication",
+    "@id": absoluteUrl("/damaura#app"),
+    name: "Damaura",
+    description,
+    url: site.damaura.url,
+    installUrl: site.damaura.app,
+    applicationCategory: "HealthApplication",
+    operatingSystem: "Web browser",
+    creator: { "@id": ORG_ID },
   };
 }
 

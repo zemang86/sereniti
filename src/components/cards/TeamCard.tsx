@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { User } from "lucide-react";
+import { ArrowRight, User } from "lucide-react";
 import { Tag } from "@/components/ui/Tag";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,6 @@ interface TeamCardProps {
   specialties: string[];
   slug: string;
   photo?: string;
-  isLead?: boolean;
   className?: string;
 }
 
@@ -20,14 +19,12 @@ export function TeamCard({
   specialties,
   slug,
   photo,
-  isLead,
   className,
 }: TeamCardProps) {
   return (
     <div
       className={cn(
-        "group bg-white rounded-card shadow-card overflow-hidden transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1",
-        isLead && "ring-1 ring-coral/40",
+        "group relative flex h-full flex-col bg-white rounded-card shadow-card overflow-hidden transition-all duration-500 hover:shadow-card-hover hover:-translate-y-1 focus-within:shadow-card-hover",
         className
       )}
     >
@@ -39,21 +36,17 @@ export function TeamCard({
             alt={name}
             width={600}
             height={600}
+            sizes="(min-width: 1024px) 400px, (min-width: 768px) 45vw, 100vw"
             className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (
           <User className="w-16 h-16 text-sunrise transition-transform duration-500 group-hover:scale-105" strokeWidth={1} />
         )}
-        {isLead && (
-          <span className="absolute top-3 left-3 z-10 rounded-button bg-coral px-2.5 py-1 text-[11px] font-semibold text-white shadow-sm">
-            Lead Therapist
-          </span>
-        )}
       </div>
 
-      <div className="p-6">
+      <div className="flex flex-1 flex-col p-6">
         <h3 className="font-serif text-xl text-night">{name}</h3>
-        <p className="text-sm text-night/60 mt-1">{role}</p>
+        <p className="text-sm text-night/70 mt-1">{role}</p>
 
         <div className="flex flex-wrap gap-1.5 mt-4">
           {specialties.slice(0, 4).map((s) => (
@@ -66,11 +59,13 @@ export function TeamCard({
           )}
         </div>
 
+        {/* Stretched link: photo, name and label all open the profile. */}
         <Link
           href={`/team/${slug}`}
-          className="inline-block mt-5 text-coral text-sm font-medium hover:underline"
+          className="mt-auto pt-5 self-start inline-flex items-center gap-2 text-coral-ink text-sm font-semibold hover:underline underline-offset-4 after:absolute after:inset-0 after:content-['']"
         >
-          View Profile
+          View Profile<span className="sr-only"> of {name}</span>
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </Link>
       </div>
     </div>

@@ -24,7 +24,7 @@ export function SectionHeader({
       )}
     >
       {overline && (
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral mb-3">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral-ink mb-3">
           {overline}
         </p>
       )}
@@ -32,7 +32,7 @@ export function SectionHeader({
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-lg text-night/60 max-w-2xl mx-auto leading-relaxed">
+        <p className={cn("mt-4 text-lg text-night/70 max-w-2xl leading-relaxed", align === "center" && "mx-auto")}>
           {subtitle}
         </p>
       )}

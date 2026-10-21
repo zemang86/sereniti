@@ -1,6 +1,6 @@
 # Serenitilabs
 
-> Serenitilabs Sdn. Bhd. is a Malaysian mental health technology company that combines licensed clinical expertise with AI-powered tools to deliver accessible, personalised mental health care for individuals and organisations. Based in Kuala Lumpur, it offers psychotherapy, digital mental health screening, and corporate wellness programmes across Malaysia, in English and Bahasa Malaysia, online and in person, powered by its AI companion, Damaura.
+> Serenitilabs Sdn. Bhd. is an AI-native mental health provider in Malaysia. Rather than selling AI to clinics, it employs licensed clinical psychologists, delivers the care itself, and builds its own AI companion, Damaura. Clinicians do the care; AI does the work around it. Based in Kuala Lumpur, it offers psychotherapy and corporate wellness programmes across Malaysia, in English and Bahasa Malaysia, online and in person, alongside its AI companion, Damaura.
 
 Key facts:
 - Legal name: Serenitilabs Sdn. Bhd. (SSM registration 202601000377 / 1662475-P)
@@ -12,10 +12,10 @@ Key facts:
 - Tagline: Expert care. Intelligent support.
 
 ## Services
-- [Services overview](https://sereniti.my/services): The three core ways Serenitilabs supports mental health, for individuals and organisations.
-- [Digital Mental Health Screening](https://sereniti.my/services/screening): Confidential, AI-guided assessment via Damaura, for individuals or across a whole workforce with anonymised aggregate reporting.
+- [Services overview](https://sereniti.my/services): The ways Serenitilabs supports mental health, for individuals and organisations.
 - [Psychotherapy](https://sereniti.my/services/psychotherapy): Evidence-based therapy by licensed clinicians, with specialised tracks for adults, children, couples, and families, online or in person.
-- [Corporate Wellness Programmes](https://sereniti.my/services/corporate): End-to-end workplace mental wellness: employee screening, on-site and online therapy, workshops, leadership briefings, and Damaura for teams.
+- [Corporate Wellness Programmes](https://sereniti.my/services/corporate): End-to-end workplace mental wellness: on-site and online therapy, workshops, leadership briefings, and Damaura for teams.
+- [Damaura](https://sereniti.my/damaura): Serenitilabs' AI companion for mental wellbeing, built for Southeast Asia and grounded in CBT, DBT and ACT. Mood check-ins, small daily practices, a journal, and a chat in English, BM or Manglish, with an optional faith layer. Free to start at https://damaura.ai (web app: https://damaura-app.netlify.app).
 
 ## Company
 - [About Serenitilabs](https://sereniti.my/about): Vision, mission, and the human-plus-AI approach to mental health care.

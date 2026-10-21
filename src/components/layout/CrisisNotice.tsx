@@ -14,10 +14,10 @@ export function CrisisNotice() {
       <div className="flex items-start gap-3">
         <LifeBuoy className="mt-0.5 h-5 w-5 shrink-0 text-coral" strokeWidth={1.75} />
         <div>
-          <p className="text-sm font-semibold text-dawn">
+          <p className="text-base font-semibold text-dawn">
             Need help right now?
           </p>
-          <p className="mt-1 text-sm leading-relaxed text-dawn/60">
+          <p className="mt-1 max-w-2xl text-sm leading-relaxed text-dawn/60">
             If you are in crisis or at immediate risk, please reach out straight
             away. These lines are free and answered by trained people.
           </p>
@@ -30,7 +30,7 @@ export function CrisisNotice() {
                 >
                   {line.display}
                 </a>
-                <p className="text-xs text-dawn/40">
+                <p className="text-xs text-dawn/60">
                   {line.name} &middot; {line.detail}
                 </p>
               </li>

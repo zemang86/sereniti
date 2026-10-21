@@ -41,8 +41,9 @@ export default function FamilyPage() {
         )}
       />
       <PsychotherapyTemplate
+      eyebrow="Family Therapy"
       title="Healing Is Easier When You Do It Together"
-      subtitle="Family dynamics shape how we relate to the world. When tension, miscommunication, or unresolved conflict affects your household, family therapy creates space for everyone to be heard, and builds a path toward understanding."
+      subtitle="Family dynamics shape how we relate to the world. When tension, miscommunication, or unresolved conflict affects your household, family therapy creates space for everyone to be heard and builds a path toward understanding."
       issuesTitle="When Family Therapy Helps"
       issues={[
         "Ongoing conflict between family members",
@@ -58,9 +59,9 @@ export default function FamilyPage() {
         body: "Family therapy typically involves the whole household, though sessions can be adapted based on who's ready to participate. Our therapists facilitate open, respectful dialogue and help families identify patterns, roles, and dynamics that may be contributing to friction. Who attends varies: sometimes it's the entire household, sometimes a parent and child, or siblings. Your therapist will guide you on the most productive configuration.",
       }}
       formats={[
-        "In-person sessions recommended (Kuala Lumpur)",
-        "Online sessions available when in-person isn't feasible",
-        "60-90 minute sessions depending on family size",
+        { kind: "in-person", label: "In-person sessions recommended (Kuala Lumpur)" },
+        { kind: "online", label: "Online sessions available when in-person isn't feasible" },
+        { kind: "duration", label: "60-90 minute sessions depending on family size" },
       ]}
       />
     </>

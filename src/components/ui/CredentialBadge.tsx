@@ -10,7 +10,8 @@ interface CredentialBadgeProps {
 
 const variants = {
   strip:
-    "inline-flex items-center gap-3 rounded-button bg-white/80 px-5 py-2.5 shadow-card backdrop-blur-sm",
+    // Card radius on mobile, where the text wraps to two lines; pill once it fits on one.
+    "inline-flex items-center gap-3 rounded-card sm:rounded-button bg-white/80 px-4 sm:px-5 py-2.5 shadow-card backdrop-blur-sm",
   card: "flex items-start gap-4 rounded-card bg-white p-8 shadow-card",
 };
 
@@ -40,8 +41,8 @@ export function CredentialBadge({
         src={logo}
         alt=""
         aria-hidden="true"
-        width={168}
-        height={168}
+        width={112}
+        height={112}
         className={cn("shrink-0", isCard ? "w-14 h-14" : "w-11 h-11")}
       />
       <div className="text-left">
@@ -50,7 +51,7 @@ export function CredentialBadge({
         </p>
         <p
           className={cn(
-            "text-night/60",
+            "text-night/70",
             isCard ? "text-sm mt-1.5 leading-relaxed" : "text-xs mt-0.5"
           )}
         >
@@ -63,9 +64,9 @@ export function CredentialBadge({
                 href={certificate}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-coral hover:underline"
+                className="font-medium text-coral-ink hover:underline"
               >
-                View certificate
+                View Certificate
               </a>
             </>
           )}

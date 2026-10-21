@@ -41,6 +41,7 @@ export default function CouplesPage() {
         )}
       />
       <PsychotherapyTemplate
+      eyebrow="Couples Therapy"
       title="Every Relationship Deserves Support"
       subtitle="Relationships take work, and seeking help isn't a sign of failure. It's a sign of commitment. Couples therapy provides a structured, neutral space where both partners can be heard, understood, and guided toward healthier patterns."
       issuesTitle="Common Reasons Couples Seek Help"
@@ -54,9 +55,9 @@ export default function CouplesPage() {
         "Pre-marital preparation",
       ]}
       formats={[
-        "Online sessions via secure video call",
-        "In-person sessions (Kuala Lumpur)",
-        "90-minute sessions to allow space for both partners",
+        { kind: "online", label: "Online sessions via secure video call" },
+        { kind: "in-person", label: "In-person sessions (Kuala Lumpur)" },
+        { kind: "duration", label: "90-minute sessions to allow space for both partners" },
       ]}
       />
     </>
