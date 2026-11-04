@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MessageCircleHeart, Heart, Building, ArrowUpRight } from "lucide-react";
+import { MessageCircleHeart, Heart, Building } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -13,7 +13,6 @@ import { DamauraCarousel } from "@/components/sections/DamauraCarousel";
 import { FAQ } from "@/components/sections/FAQ";
 import { CredentialBadge } from "@/components/ui/CredentialBadge";
 import { teamMembers } from "@/content/team";
-import { site } from "@/lib/site";
 
 /* ─── Hero ─── */
 function HeroSection() {
@@ -169,6 +168,41 @@ function ServicesSection() {
   );
 }
 
+/* ─── Intro Video ─── */
+function IntroVideo() {
+  return (
+    // Continues the services section's dawn surface, so it needs no top padding.
+    // preload="none": nothing past the 35 KB poster loads until someone presses play.
+    <section className="relative pb-20 md:pb-28 bg-dawn">
+      <Container className="relative z-10">
+        <FadeInOnScroll>
+          <SectionHeader
+            title="Meet Serenitilabs"
+            subtitle="A 90-second look at who we are, how we support people and organisations, and where Damaura fits in."
+          />
+        </FadeInOnScroll>
+        <FadeInOnScroll>
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-card bg-white shadow-card">
+            {/* Captions are burned into the video, so it needs no <track>. */}
+            <video
+              controls
+              preload="none"
+              playsInline
+              poster="/videos/serenitilabs-promo-poster.webp"
+              width={1920}
+              height={1080}
+              aria-label="Meet Serenitilabs, a 90-second video with on-screen captions"
+              className="block aspect-video h-auto w-full"
+            >
+              <source src="/videos/serenitilabs-promo.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </FadeInOnScroll>
+      </Container>
+    </section>
+  );
+}
+
 /* ─── Trust / Stats ─── */
 function TrustSection() {
   const stats = [
@@ -241,13 +275,11 @@ function DamauraSpotlight() {
               </p>
             </FadeInOnScroll>
             <FadeInOnScroll delay={0.3}>
-              <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-4">
+              {/* One route only: /damaura, where the Play badge is. The goal is
+                  native app installs, so the home page doesn't link the web app. */}
+              <div className="mt-8">
                 <Button href="/damaura" showArrow>
-                  See How Damaura Works
-                </Button>
-                <Button href={site.damaura.app} variant="ghost">
-                  Try Damaura Free
-                  <ArrowUpRight className="w-4 h-4" strokeWidth={1.75} />
+                  Learn More About Damaura
                 </Button>
               </div>
             </FadeInOnScroll>
@@ -359,6 +391,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <ServicesSection />
+      <IntroVideo />
       <TrustSection />
       <DamauraSpotlight />
       <TeamTeaser />
