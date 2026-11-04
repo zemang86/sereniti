@@ -206,7 +206,7 @@ export function damauraAppNode(description: string): Node {
     url: site.damaura.url,
     installUrl: site.damaura.app,
     applicationCategory: "HealthApplication",
-    operatingSystem: "Web browser",
+    operatingSystem: "Web browser, Android",
     creator: { "@id": ORG_ID },
   };
 }

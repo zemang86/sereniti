@@ -58,12 +58,14 @@ export const site = {
     ],
   },
   /**
-   * Damaura, Serenitilabs' AI companion. Only the web app is live; native apps
-   * are "coming soon" with no date. Never advertise pricing or a store listing.
+   * Damaura, Serenitilabs' AI companion. Live on the web and on Android
+   * (Google Play, since 4 Nov 2026). iOS is "App Store coming soon" until the
+   * App Store listing is live. Never advertise pricing or the TestFlight link.
    */
   damaura: {
     url: "https://damaura.ai",
-    app: "https://damaura-app.netlify.app",
+    app: "https://app.damaura.ai",
+    play: "https://play.google.com/store/apps/details?id=ai.damaura.app",
     email: "hello@damaura.ai",
   },
   // Real social profile URLs (used for schema.org sameAs). Empty = omitted.

@@ -154,9 +154,24 @@ export default function DamauraPage() {
                   Visit damaura.ai
                 </a>
               </div>
-              <p className="mt-5 text-sm text-damaura-muted">
-                Free to start on the web. App Store and Google Play coming soon.
-              </p>
+              <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
+                {/* Google's official badge (same file as damaura.ai). Don't recolour or redraw it. */}
+                <a
+                  href={site.damaura.play}
+                  className="inline-block shrink-0 rounded-[10px] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-damaura-plum"
+                >
+                  <Image
+                    src="/images/damaura/google-play.png"
+                    alt="Get it on Google Play"
+                    width={478}
+                    height={142}
+                    className="h-12 w-auto"
+                  />
+                </a>
+                <p className="text-sm text-damaura-muted">
+                  Free to start on the web and Android · App Store coming soon
+                </p>
+              </div>
             </div>
 
             {/* LCP image on desktop: not wrapped in a reveal, so it paints on arrival. */}
@@ -354,7 +369,8 @@ export default function DamauraPage() {
           </StaggerChildren>
 
           <p className="mt-10 text-center text-sm text-damaura-muted">
-            Questions about the app? Write to{" "}
+            Damaura is developed by Serenitilabs in collaboration with Tachys X
+            Sdn Bhd. Questions about the app? Write to{" "}
             <a
               href={`mailto:${site.damaura.email}`}
               className="font-semibold text-damaura-plum hover:underline"
