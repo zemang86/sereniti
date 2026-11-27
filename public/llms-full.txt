@@ -39,7 +39,7 @@ Business case: workplace stress costs Malaysian employers an estimated RM1.8 bil
 
 ## Damaura (AI companion platform)
 
-Damaura is Serenitilabs' AI companion for mental wellbeing: Southeast Asia's culturally intelligent AI companion, grounded in CBT, DBT and ACT. It works in English, BM or Manglish, with an optional faith layer (Universal or Islamic). Website: https://damaura.ai. Web app, free to start: https://app.damaura.ai. Android app on Google Play: https://play.google.com/store/apps/details?id=ai.damaura.app. The iPhone app is coming soon to the App Store. Damaura is developed by Serenitilabs in collaboration with Tachys X Sdn Bhd, which publishes the Google Play listing. Product contact: hello@damaura.ai.
+Damaura is Serenitilabs' AI companion for mental wellbeing: Southeast Asia's culturally intelligent AI companion, grounded in CBT, DBT and ACT. It works in English, BM or Manglish, with an optional faith layer (Universal or Islamic). Website: https://damaura.ai. Web app, free to start: https://app.damaura.ai. iPhone app on the App Store: https://apps.apple.com/my/app/damaura/id6825423435. Android app on Google Play: https://play.google.com/store/apps/details?id=ai.damaura.app. Damaura is developed by Serenitilabs and published by Tachys X Sdn Bhd (https://www.tachysx.com), which holds both store listings. Product contact: hello@damaura.ai.
 
 - Today: a one-tap mood check-in, one gentle next step, a daily rhythm, and the days you showed up. No streaks to lose.
 - Talk: chat in English, BM or Manglish, with breathing and grounding exercises inside the chat. Crisis lines appear when things sound heavy.

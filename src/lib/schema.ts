@@ -206,8 +206,14 @@ export function damauraAppNode(description: string): Node {
     url: site.damaura.url,
     installUrl: site.damaura.app,
     applicationCategory: "HealthApplication",
-    operatingSystem: "Web browser, Android",
+    operatingSystem: "Web browser, iOS, Android",
     creator: { "@id": ORG_ID },
+    // Named and linked on /damaura, as on both store listings.
+    publisher: {
+      "@type": "Organization",
+      name: site.damaura.publisher.name,
+      url: site.damaura.publisher.url,
+    },
   };
 }
 

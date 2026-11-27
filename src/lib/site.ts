@@ -58,14 +58,18 @@ export const site = {
     ],
   },
   /**
-   * Damaura, Serenitilabs' AI companion. Live on the web and on Android
-   * (Google Play, since 4 Nov 2026). iOS is "App Store coming soon" until the
-   * App Store listing is live. Never advertise pricing or the TestFlight link.
+   * Damaura, Serenitilabs' AI companion. Live on the web, on Android (Google
+   * Play, since 4 Nov 2026) and on iPhone (App Store, since 25 Nov 2026).
+   * Developed by Serenitilabs and published by Tachys X Sdn Bhd, which holds
+   * both store accounts (the listings' own credit line). Never advertise
+   * pricing or the TestFlight link.
    */
   damaura: {
     url: "https://damaura.ai",
     app: "https://app.damaura.ai",
     play: "https://play.google.com/store/apps/details?id=ai.damaura.app",
+    appStore: "https://apps.apple.com/my/app/damaura/id6825423435",
+    publisher: { name: "Tachys X Sdn Bhd", url: "https://www.tachysx.com" },
     email: "hello@damaura.ai",
   },
   // Real social profile URLs (used for schema.org sameAs). Empty = omitted.

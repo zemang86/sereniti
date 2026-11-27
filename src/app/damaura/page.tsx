@@ -155,21 +155,36 @@ export default function DamauraPage() {
                 </a>
               </div>
               <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-4">
-                {/* Google's official badge (same file as damaura.ai). Don't recolour or redraw it. */}
-                <a
-                  href={site.damaura.play}
-                  className="inline-block shrink-0 rounded-[10px] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-damaura-plum"
-                >
-                  <Image
-                    src="/images/damaura/google-play.png"
-                    alt="Get it on Google Play"
-                    width={478}
-                    height={142}
-                    className="h-12 w-auto"
-                  />
-                </a>
+                {/* Apple's and Google's official badges (the same files as tachysx.com and
+                    damaura.ai), at one height. Don't recolour or redraw them. */}
+                <div className="flex shrink-0 flex-wrap items-center gap-3">
+                  <a
+                    href={site.damaura.appStore}
+                    className="inline-block shrink-0 rounded-[10px] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-damaura-plum"
+                  >
+                    <Image
+                      src="/images/damaura/app-store.svg"
+                      alt="Download on the App Store"
+                      width={120}
+                      height={40}
+                      className="h-12 w-auto"
+                    />
+                  </a>
+                  <a
+                    href={site.damaura.play}
+                    className="inline-block shrink-0 rounded-[10px] transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-damaura-plum"
+                  >
+                    <Image
+                      src="/images/damaura/google-play.png"
+                      alt="Get it on Google Play"
+                      width={478}
+                      height={142}
+                      className="h-12 w-auto"
+                    />
+                  </a>
+                </div>
                 <p className="text-sm text-damaura-muted">
-                  Free to start on the web and Android · App Store coming soon
+                  Free to start on the web, iPhone and Android
                 </p>
               </div>
             </div>
@@ -369,8 +384,14 @@ export default function DamauraPage() {
           </StaggerChildren>
 
           <p className="mt-10 text-center text-sm text-damaura-muted">
-            Damaura is developed by Serenitilabs in collaboration with Tachys X
-            Sdn Bhd. Questions about the app? Write to{" "}
+            Damaura is developed by Serenitilabs and published by{" "}
+            <a
+              href={site.damaura.publisher.url}
+              className="font-semibold text-damaura-plum hover:underline"
+            >
+              {site.damaura.publisher.name}
+            </a>
+            . Questions about the app? Write to{" "}
             <a
               href={`mailto:${site.damaura.email}`}
               className="font-semibold text-damaura-plum hover:underline"

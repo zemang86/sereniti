@@ -28,7 +28,7 @@ export const faqs = [
   },
   {
     q: "What is Damaura?",
-    a: "Damaura is Serenitilabs' AI companion for mental wellbeing, built for Southeast Asia and grounded in CBT, DBT and ACT. It offers one-tap mood check-ins, small daily practices, a journal, and a chat in English, BM or Manglish, with an optional faith layer. It is free to start on the web at damaura.ai and on Android (Google Play). Damaura is an AI companion, not an emergency service.",
+    a: "Damaura is Serenitilabs' AI companion for mental wellbeing, built for Southeast Asia and grounded in CBT, DBT and ACT. It offers one-tap mood check-ins, small daily practices, a journal, and a chat in English, BM or Manglish, with an optional faith layer. It is free to start on the web at damaura.ai, on iPhone (App Store) and on Android (Google Play). Damaura is an AI companion, not an emergency service.",
   },
   {
     q: "How do I book a session or get in touch?",
